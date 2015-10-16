@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 var argv = require('argv');
-var sendToCodeCov = require('../lib/sendToCodeCov.io');
+var sendToCodeCov = require('../lib/codecov');
 
 
 var args = argv.option([
@@ -20,5 +20,4 @@ var args = argv.option([
   {name: 'dump', type: 'boolean', description: "Dump collected data and do not send to Codecov"}
 ]).run();
 
-console.log(args);
 sendToCodeCov(args);
