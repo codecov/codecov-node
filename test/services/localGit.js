@@ -1,5 +1,5 @@
 var local = require("../../lib/services/localGit");
-var execSync = require('child_process').execSync;
+var execSync = require('child_process').execSync || require('exec-sync');
 
 describe("Local git/mercurial CI Provider", function(){
 

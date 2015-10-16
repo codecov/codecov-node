@@ -1,5 +1,5 @@
 var drone = require("../../lib/services/drone");
-var execSync = require('child_process').execSync;
+var execSync = require('child_process').execSync || require('exec-sync');
 
 describe("Drone.io CI Provider", function(){
 

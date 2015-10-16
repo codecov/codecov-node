@@ -1,6 +1,6 @@
 var fs = require('fs');
 var codecov = require("../lib/codecov");
-var execSync = require('child_process').execSync;
+var execSync = require('child_process').execSync || require('exec-sync');
 
 
 

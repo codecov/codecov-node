@@ -26,9 +26,10 @@
   },
   "homepage": "https://github.com/codecov/codecov-node",
   "dependencies": {
-    "request": "2.42.0",
-    "urlgrey": "0.4.0",
-    "argv": "0.0.2"
+    "request": ">=2.42.0",
+    "urlgrey": ">=0.4.0",
+    "argv": ">=0.0.2",
+    "exec-sync": ">=0.1.6"
   },
   "devDependencies": {
     "expect.js": "0.3.1",
