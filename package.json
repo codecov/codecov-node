@@ -1,0 +1,42 @@
+{
+  "name": "codecov",
+  "version": "1.0.0",
+  "description": "Uploading report to Codecov: https://codecov.io",
+  "main": "index.js",
+  "scripts": {
+    "test": [
+      "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec",
+      "./bin/codecov --verbose"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cainus/codecov.git"
+  },
+  "keywords": [
+    "coverage",
+    "code-coverage",
+    "codecov.io",
+    "codecov"
+  ],
+  "bin": {
+    "codecov": "./bin/codecov"
+  },
+  "author": "Codecov <hello@codecov.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codecov/codecov-node/issues"
+  },
+  "homepage": "https://github.com/codecov/codecov-node",
+  "dependencies": {
+    "request": "2.42.0",
+    "urlgrey": "0.4.0",
+    "argv": "0.0.2"
+  },
+  "devDependencies": {
+    "expect.js": "0.3.1",
+    "istanbul": "0.3.2",
+    "jshint": "2.5.5",
+    "mocha": "2.2.1"
+  }
+}
