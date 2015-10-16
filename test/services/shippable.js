@@ -1,6 +1,6 @@
 var shippable = require("../../lib/services/shippable");
 
-describe("shippable service", function(){
+describe("Shippable CI Provider", function(){
 
   it ("can detect shippable", function(){
     process.env.SHIPPABLE = "true";
@@ -21,7 +21,7 @@ describe("shippable service", function(){
       build : '91011',
       build_url : 'http://...',
       branch : 'master',
-      pull_request : '2',
+      pr : '2',
       slug : 'owner/repo'
     });
   });

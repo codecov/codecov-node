@@ -1,6 +1,6 @@
 var wercker = require("../../lib/services/wercker");
 
-describe("wercker service", function(){
+describe("Wercker CI Provider", function(){
 
   it ("can detect wercker", function(){
     process.env.WERCKER_MAIN_PIPELINE_STARTED = "1399372237";
@@ -20,8 +20,7 @@ describe("wercker service", function(){
       build : '1399372237',
       branch : 'master',
       build_url : 'https://...',
-      owner : 'owner',
-      repo : 'repo'
+      slug : 'owner/repo'
     });
   });
 

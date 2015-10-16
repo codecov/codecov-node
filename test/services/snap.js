@@ -1,6 +1,6 @@
 var snap = require("../../lib/services/snap");
 
-describe("snap service", function(){
+describe("Snap CI Provider", function(){
 
   it ("can detect snap", function(){
     process.env.SNAP_CI = "true";
@@ -18,7 +18,7 @@ describe("snap service", function(){
       commit : '5678',
       build : '1234',
       branch : 'master',
-      pull_request : 'blah'
+      pr : 'blah'
     });
   });
 
@@ -34,7 +34,7 @@ describe("snap service", function(){
       commit : '5678',
       build : '1234',
       branch : 'upstream-branch',
-      pull_request : 'blah'
+      pr : 'blah'
     });
   });
 });

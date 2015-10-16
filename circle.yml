@@ -2,6 +2,10 @@ machine:
   node:
     version: 0.10.33
 
+test:
+  post:
+    - ./bin/codecov
+
 deployment:
   suite:
     branch: /.*/

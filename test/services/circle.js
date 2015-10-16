@@ -1,6 +1,6 @@
 var circle = require("../../lib/services/circle");
 
-describe("circle service", function(){
+describe("Circle CI Provider", function(){
 
   it ("can detect circle", function(){
     process.env.CIRCLECI = "true";
@@ -23,8 +23,7 @@ describe("circle service", function(){
       job : '1234.1',
       branch : 'master',
       pr : 'blah',
-      owner : 'owner',
-      repo : 'repo'
+      slug : 'owner/repo'
     });
   });
 

@@ -1,6 +1,6 @@
 var semaphore = require("../../lib/services/semaphore");
 
-describe("semaphore service", function(){
+describe("Semaphore CI Provider", function(){
 
   it ("can detect semaphore", function(){
     process.env.SEMAPHORE = "true";

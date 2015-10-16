@@ -1,6 +1,6 @@
 var travis = require("../../lib/services/travis");
 
-describe("travis service", function(){
+describe("Travis CI Provider", function(){
 
   it ("can detect travis", function(){
     process.env.TRAVIS = "true";
@@ -13,14 +13,16 @@ describe("travis service", function(){
     process.env.TRAVIS_JOB_NUMBER = '91011';
     process.env.TRAVIS_BRANCH = 'master';
     process.env.TRAVIS_PULL_REQUEST = 'blah';
+    process.env.TRAVIS_BUILD_DIR = '/';
     process.env.TRAVIS_REPO_SLUG = 'owner/repo';
     expect(travis.configuration()).to.eql({
       service : 'travis',
       commit : '5678',
       build : '91011',
       branch : 'master',
+      root : '/',
       job : '1234',
-      pull_request : 'blah',
+      pr : 'blah',
       slug : 'owner/repo'
     });
   });

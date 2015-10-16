@@ -1,6 +1,6 @@
 var codeship = require("../../lib/services/codeship");
 
-describe("codeship service", function(){
+describe("Codeship CI Provider", function(){
 
   it ("can detect codeship", function(){
     process.env.CI_NAME = "codeship";
