@@ -29,7 +29,7 @@
     "request": ">=2.42.0",
     "urlgrey": ">=0.4.0",
     "argv": ">=0.0.2",
-    "exec-sync": ">=0.1.6"
+    "execSync": "1.0.2"
   },
   "devDependencies": {
     "expect.js": "0.3.1",
