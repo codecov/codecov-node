@@ -55,21 +55,6 @@ istanbul cover test.js
 ./node_modules/.bin/codecov
 ```
 
-----
-
-## Advanced: Partial Line Coverage
-**Codecov does support partial line coverage**. However, some node projects do not report partial coverage accurate enough.
-You can decide to upload the partial coverage report by chaning the target upload file to `./coverage/coverage.json`.
-View your report on Codecov, if the reports are not accurate then switch back to the `lcov` provided above.
-
-We are working on improving this implementation and appreciate your patience.
-
-## Contributing
-
-I generally don't accept pull requests that are untested, or break the build, because I'd like to keep the quality high (this is a coverage tool afterall!).
-
-I also don't care for "soft-versioning" or "optimistic versioning" (dependencies that have ^, x, > in them, or anything other than numbers and dots).  There have been too many problems with bad semantic versioning in dependencies, and I'd rather have a solid library than a bleeding edge one.
-
 [travis-image]: https://travis-ci.org/codecov/codecov-node.svg?branch=master
 [travis-url]: https://travis-ci.org/codecov/codecov-node
 
