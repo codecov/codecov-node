@@ -21,5 +21,5 @@ describe("Codecov", function(){
     
     expect(detect().commit).to.match(/^\w{40}$/);
     expect(detect().commit).to.eql(execSync("git rev-parse HEAD || hg id -i --debug | tr -d '+'").toString().trim());
-  })
+  });
 });
