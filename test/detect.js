@@ -11,9 +11,9 @@ if (!execSync) {
 describe("Codecov", function(){
 
   it("can detect existing appveyor service", function(){
-    process.env.APPVEYOR = "true";
+    process.env.TRAVIS = "true";
 
-    expect(detect().service).to.eql("appveyor");
+    expect(detect().service).to.eql("travis");
   });
   
   it("can select local git service if no service is found", function(){
