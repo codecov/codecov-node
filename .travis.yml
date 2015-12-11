@@ -11,4 +11,4 @@ node_js:
   - "iojs"
 
 after_success:
-    - ./bin/codecov -e TRAVIS_NODE_VERSION
+  - ./bin/codecov -e TRAVIS_NODE_VERSION

@@ -13,7 +13,7 @@ describe("Buildkite CI Provider", function(){
     process.env.BUILDKITE_COMMIT = "commit";
     process.env.BUILDKITE_BRANCH = "branch";
     process.env.BUILDKITE_PROJECT_SLUG = "slug";
-    
+
     expect(buildkite.configuration()).to.eql({
       service : 'buildkite',
       build : "1",
