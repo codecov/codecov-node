@@ -66,3 +66,11 @@ istanbul cover test.js
 
 [devdepstat-url]: https://david-dm.org/codecov/codecov-node#info=devDependencies
 [devdepstat-image]: https://img.shields.io/david/dev/codecov/codecov-node/master.svg
+
+**With NYC**
+
+```
+nyc npm test
+nyc report --reporter=text-lcov > coverage.lcov
+./node_modules/.bin/codecov
+```
