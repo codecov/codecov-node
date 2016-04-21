@@ -24,7 +24,7 @@ describe("Codecov", function(){
 
   it("can get a token passed via env variable", function(){
     process.env.codecov_token = 'abc123';
-    expect(codecov.upload({options: {dump: true}}).query.token).to.eql('abc123');
+    expect(codecov.upload({options: {dump: true, disable: 'search'}}).query.token).to.eql('abc123');
     delete process.env.codecov_token;
     process.env.CODECOV_TOKEN = 'ABC123';
     expect(codecov.upload({options: {dump: true}}).query.token).to.eql('ABC123');
