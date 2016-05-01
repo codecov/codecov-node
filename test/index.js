@@ -1,6 +1,7 @@
 var fs = require('fs');
 var codecov = require("../lib/codecov");
 var execSync = require('child_process').execSync;
+var rimraf = require('rimraf');
 if (!execSync) {
   var exec = require('execSync').exec;
   var execSync = function(cmd){
@@ -118,13 +119,22 @@ describe("Codecov", function(){
   });
 
   it("can have custom args for gcov", function(){
+    rimraf.sync(__dirname + '/gcov-test');
+
+    fs.mkdirSync(__dirname + '/gcov-test');
+    fs.mkdirSync(__dirname + '/gcov-test/ignore');
+    fs.writeFileSync(__dirname + '/gcov-test/test.gcno', 'testing\n');
+    fs.writeFileSync(__dirname + '/gcov-test/ignore/test.gcno', 'testing\n');
+
     var res = codecov.upload({options: {dump: true,
-                                        'gcov-root': 'folder/path',
-                                        'gcov-glob': 'ignore/this/folder',
+                                        'gcov-root': 'test/gcov-test',
+                                        'gcov-glob': 'test/gcov-test/ignore/**',
                                         'gcov-exec': 'llvm-gcov',
                                         'gcov-args': '-o'}});
-    expect(res.debug).to.contain('find folder/path -type f -name \'*.gcno\' -not -path \'ignore/this/folder\' -exec llvm-gcov -o {} +');
-  });
 
+    rimraf.sync(__dirname + '/gcov-test');
+
+    expect(res.debug).to.contain('llvm-gcov -o test/gcov-test/test.gcno');
+  });
 
 });
