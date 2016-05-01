@@ -4,6 +4,7 @@
   "description": "Uploading report to Codecov: https://codecov.io",
   "main": "index.js",
   "scripts": {
+    "pretest": "rimraf ./coverage/",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec"
   },
   "repository": {
@@ -35,6 +36,7 @@
     "expect.js": "0.3.1",
     "istanbul": "0.3.2",
     "jshint": "2.5.5",
-    "mocha": "2.2.1"
+    "mocha": "2.2.1",
+    "rimraf": "^2.5.2"
   }
 }
