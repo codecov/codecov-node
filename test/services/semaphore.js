@@ -14,11 +14,11 @@ describe("Semaphore CI Provider", function(){
     process.env.BRANCH_NAME = "master";
     process.env.SEMAPHORE_REPO_SLUG = "owner/repo";
     expect(semaphore.configuration()).to.eql({
-      service : 'semaphore',
-      commit : '5678',
-      build : '1234.1',
-      branch : 'master',
-      slug : 'owner/repo'
+      service : "semaphore",
+      commit : "5678",
+      build : "1234.1",
+      branch : "master",
+      slug : "owner/repo"
     });
   });
 
