@@ -11,14 +11,14 @@ describe("Codeship CI Provider", function(){
     process.env.CI_BUILD_NUMBER = "1234";
     process.env.CI_COMMIT_ID = "5678";
     process.env.CI_BRANCH = "master";
-    process.env.CI_BUILD_URL = 'https://...';
+    process.env.CI_BUILD_URL = "https://...";
 
     expect(codeship.configuration()).to.eql({
-      service : 'codeship',
-      commit : '5678',
-      build : '1234',
-      branch : 'master',
-      build_url : 'https://...'
+      service : "codeship",
+      commit : "5678",
+      build : "1234",
+      branch : "master",
+      build_url : "https://..."
     });
   });
 

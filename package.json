@@ -4,6 +4,8 @@
   "description": "Uploading report to Codecov: https://codecov.io",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint . bin/codecov",
+    "pretest": "npm run lint",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec"
   },
   "repository": {
@@ -26,12 +28,13 @@
   },
   "homepage": "https://github.com/codecov/codecov-node",
   "dependencies": {
-    "request": ">=2.42.0",
-    "urlgrey": ">=0.4.0",
     "argv": ">=0.0.2",
-    "execSync": "1.0.2"
+    "execSync": "1.0.2",
+    "request": ">=2.42.0",
+    "urlgrey": ">=0.4.0"
   },
   "devDependencies": {
+    "eslint": "2.13.1",
     "expect.js": "0.3.1",
     "istanbul": "0.3.2",
     "jshint": "2.5.5",

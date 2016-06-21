@@ -15,7 +15,7 @@ describe("Buildkite CI Provider", function(){
     process.env.BUILDKITE_PROJECT_SLUG = "slug";
 
     expect(buildkite.configuration()).to.eql({
-      service : 'buildkite',
+      service : "buildkite",
       build : "1",
       build_url : "url",
       commit : "commit",

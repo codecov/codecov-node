@@ -1,1 +1,1 @@
-expect = require('expect.js');
+expect = require("expect.js"); // eslint-disable-line no-undef

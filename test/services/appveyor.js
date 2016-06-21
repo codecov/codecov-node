@@ -15,16 +15,16 @@ describe("AppVeyor CI Provider", function(){
     process.env.APPVEYOR_PULL_REQUEST_NUMBER = "1";
     process.env.APPVEYOR_BUILD_VERSION = "job";
     process.env.APPVEYOR_JOB_ID = "build";
-    process.env.APPVEYOR_REPO_NAME = 'owner/repo';
+    process.env.APPVEYOR_REPO_NAME = "owner/repo";
 
     expect(appveyor.configuration()).to.eql({
-      service : 'appveyor',
-      commit : '5678',
-      build : 'build',
-      job : 'a/b/job',
-      pr : '1',
-      branch : 'master',
-      slug : 'owner/repo'
+      service : "appveyor",
+      commit : "5678",
+      build : "build",
+      job : "a/b/job",
+      pr : "1",
+      branch : "master",
+      slug : "owner/repo"
     });
   });
 

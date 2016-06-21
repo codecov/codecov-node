@@ -11,16 +11,16 @@ describe("Wercker CI Provider", function(){
     process.env.WERCKER_MAIN_PIPELINE_STARTED = "1399372237";
     process.env.WERCKER_GIT_COMMIT = "5678";
     process.env.WERCKER_GIT_BRANCH = "master";
-    process.env.WERCKER_BUILD_URL = 'https://...';
-    process.env.WERCKER_GIT_OWNER = 'owner';
-    process.env.WERCKER_GIT_REPOSITORY = 'repo';
+    process.env.WERCKER_BUILD_URL = "https://...";
+    process.env.WERCKER_GIT_OWNER = "owner";
+    process.env.WERCKER_GIT_REPOSITORY = "repo";
     expect(wercker.configuration()).to.eql({
-      service : 'wercker',
-      commit : '5678',
-      build : '1399372237',
-      branch : 'master',
-      build_url : 'https://...',
-      slug : 'owner/repo'
+      service : "wercker",
+      commit : "5678",
+      build : "1399372237",
+      branch : "master",
+      build_url : "https://...",
+      slug : "owner/repo"
     });
   });
 
