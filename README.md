@@ -58,11 +58,19 @@ istanbul cover test.js
 [travis-image]: https://travis-ci.org/codecov/codecov-node.svg?branch=master
 [travis-url]: https://travis-ci.org/codecov/codecov-node
 
-[npm-url]: https://npmjs.org/package/codecov.io
-[npm-image]: https://img.shields.io/npm/v/codecov.io.svg
+[npm-url]: https://npmjs.org/package/codecov
+[npm-image]: https://img.shields.io/npm/v/codecov.svg
 
 [depstat-url]: https://david-dm.org/codecov/codecov-node
 [depstat-image]: https://img.shields.io/david/codecov/codecov-node/master.svg
 
 [devdepstat-url]: https://david-dm.org/codecov/codecov-node#info=devDependencies
 [devdepstat-image]: https://img.shields.io/david/dev/codecov/codecov-node/master.svg
+
+**With NYC**
+
+```
+nyc npm test
+nyc report --reporter=text-lcov > coverage.lcov
+./node_modules/.bin/codecov
+```
