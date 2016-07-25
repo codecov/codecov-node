@@ -22,15 +22,31 @@ Once your app is instrumented for coverage, and building, simply call `./node_mo
 This library currently supports the following CI companies: [Travis CI](https://travis-ci.org/), [Travis](https://travis-ci.com/), [Appveyor](https://appveyor.com/), [CircleCI](https://circleci.com/), [Codeship](https://codeship.io/), [Drone](https://drone.io/), [Jenkins](http://jenkins-ci.org/), [Shippable](https://shippable.com/), [Semaphore](https://semaphoreapp.com/), [Wercker](https://wercker.com/), [Snap CI](https://snap-ci.com/), [Buildkite](https://buildkite.com/).
 
 #### Upload repo tokens
+
 > Repo tokens are **not** required for public repos tested on Travis-Org, CircleCI or AppVeyor.
 
 Repo tokens are neccessary to distinquish your repository from others. You can find your repo token on your repository page at Codecov. Set this unique uuid to `CODECOV_TOKEN` in your environment variables.
 
-```
-export CODECOV_TOKEN=":uuid-repo-token"
-# or
-./node_modules/.bin/codecov --token=:token
-```
+Here are your options (replace `$token` with your token from <http://codecov.io>):
+
+1. Use enviroment variable `CODECOV_TOKEN`:
+
+  ```bash
+  export CODECOV_TOKEN="$token"
+  ```
+
+2. Manually pass `--token` option:
+
+  ```bash
+  ./node_modules/.bin/codecov --token=$token
+  ```
+
+3. Create a `.codecov.yml` or `codecov.yml` file:
+
+  ```yaml
+  codecov:
+    token: $uuid-repo-token
+  ```
 
 #### [Istanbul](https://github.com/gotwarlost/istanbul)
 
