@@ -19,7 +19,7 @@ describe("Codecov", function(){
                             },
                             'testing node-'+codecov.version,
                             function(body){
-                              expect(body).to.contain('http://codecov.io/github/codecov/ci-repo?ref=c739768fcac68144a3a6d82305b9c4106934d31a');
+                              expect(body).to.contain('http://codecov.io/github/codecov/ci-repo/commit/c739768fcac68144a3a6d82305b9c4106934d31a');
                               done();
                             },
                             function(err){
@@ -36,7 +36,7 @@ describe("Codecov", function(){
                             },
                             'testing node-'+codecov.version,
                             function(body){
-                              expect(body).to.contain('http://codecov.io/github/codecov/ci-repo?ref=c739768fcac68144a3a6d82305b9c4106934d31a');
+                              expect(body).to.contain('http://codecov.io/github/codecov/ci-repo/commit/c739768fcac68144a3a6d82305b9c4106934d31a');
                               done();
                             },
                             function(err){
