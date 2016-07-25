@@ -26,15 +26,15 @@
   },
   "homepage": "https://github.com/codecov/codecov-node",
   "dependencies": {
-    "request": ">=2.42.0",
-    "urlgrey": ">=0.4.0",
-    "argv": ">=0.0.2",
+    "request": "2.74.0",
+    "urlgrey": "0.4.4",
+    "argv": "0.0.2",
     "execSync": "1.0.2"
   },
   "devDependencies": {
     "expect.js": "0.3.1",
-    "istanbul": "0.3.2",
-    "jshint": "2.5.5",
-    "mocha": "2.2.1"
+    "istanbul": "0.4.4",
+    "jshint": "2.9.2",
+    "mocha": "2.5.3"
   }
 }
