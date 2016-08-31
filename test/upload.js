@@ -11,6 +11,7 @@ if (!execSync) {
 
 describe("Codecov", function(){
   it("can get upload to v2", function(done){
+    var self = this;
     codecov.sendToCodecovV2('https://codecov.io',
                             {
                               token: 'f881216b-b5c0-4eb1-8f21-b51887d1d506',
@@ -24,14 +25,16 @@ describe("Codecov", function(){
                             },
                             function(errCode, errMsg){
                               if(errCode === 'EAI_AGAIN'){
-                                console.log('Offline - can not run this test');
-                                done();
+                                self.skip(); // offline - we can not test upload
+                                return;
                               }
-                              throw err;
+                              throw new Error(errMsg);
                             });
   });
 
   it("can get upload to v3", function(done){
+    var self = this;
+    this.timeout(3000); // give this test extra time to run (default is 2000ms)
     codecov.sendToCodecovV3('https://codecov.io',
                             {
                               token: 'f881216b-b5c0-4eb1-8f21-b51887d1d506',
@@ -45,10 +48,10 @@ describe("Codecov", function(){
                             },
                             function(errCode, errMsg){
                               if(errCode === 'EAI_AGAIN'){
-                                console.log('Offline - can not run this test');
-                                done();
+                                self.skip(); // offline - we can not test upload
+                                return;
                               }
-                              throw err;
+                              throw new Error(errMsg);
                             });
   });
 
@@ -69,7 +72,7 @@ describe("Codecov", function(){
                               if(errCode === 'EAI_AGAIN'){
                                 done();
                               }
-                              throw err;
+                              throw new Error(errMsg);
                             }
       )).to.not.throwException();
   })
