@@ -23,16 +23,24 @@ var args = argv.option([
 
 // listen for piped input for 500ms
 var listeningTime = 500;
+var readingPiped = false;
 process.stdin.setEncoding('utf8');
-process.stdin.on('data', function(report) {
-  if (report !== null) {
+process.stdin.on('readable', function() {
+  var data = process.stdin.read();
+  if (data !== null) {
+    readingPiped = true;
     clearTimeout(timer);
     if (!args.options.pipe) args.options.pipe = [];
-    args.options.pipe.push(report);
+    args.options.pipe.push(data);
   }
 });
 process.stdin.on('end', function() {
-  codecov.upload(args);
+  if (readingPiped) codecov.upload(args);
 });
 
-var timer = setTimeout(codecov.upload, listeningTime, args)
+var timer = setTimeout(function() {
+  if (!readingPiped) {
+    codecov.upload(args);
+    process.exit();
+  }
+}, listeningTime);
