@@ -24,9 +24,8 @@ var args = argv.option([
 // listen for piped input for 500ms
 var listeningTime = 500;
 process.stdin.setEncoding('utf8');
-process.stdin.on('readable', function() {
-  var report = process.stdin.read();
-  if (report != null) {
+process.stdin.on('data', function(report) {
+  if (report !== null) {
     clearTimeout(timer);
     if (!args.options.pipe) args.options.pipe = [];
     args.options.pipe.push(report);
