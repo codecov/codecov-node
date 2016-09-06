@@ -25,13 +25,12 @@ var args = argv.option([
 var listeningTime = 500;
 var readingPiped = false;
 process.stdin.setEncoding('utf8');
-process.stdin.on('readable', function() {
-  var data = process.stdin.read();
-  if (data !== null) {
+process.stdin.on('data', function(report) {
+  if (report !== null) {
     readingPiped = true;
     clearTimeout(timer);
     if (!args.options.pipe) args.options.pipe = [];
-    args.options.pipe.push(data);
+    args.options.pipe.push(report);
   }
 });
 process.stdin.on('end', function() {
