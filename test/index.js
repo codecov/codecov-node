@@ -128,9 +128,10 @@ describe("Codecov", function(){
 
   it("can read piped reports", function(done){
     var exec = require('child_process').exec;
-    exec('cat test/example.coverage.txt | bin/codecov --dump --disable=gcov', function(err, stdout, stderr){
+    var childProcess = exec('cat test/example.coverage.txt | bin/codecov --dump --disable=gcov', function(err, stdout, stderr){
       expect(stdout.toString()).to.contain('path=piped');
       expect(stdout.toString()).to.contain('this file is intentionally left blank');
+      childProcess.kill();
       done();
     });
   });
