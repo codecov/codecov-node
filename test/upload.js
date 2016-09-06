@@ -75,6 +75,6 @@ describe("Codecov", function(){
                               throw new Error(errMsg);
                             }
       )).to.not.throwException();
-  })
+  });
 
 });
