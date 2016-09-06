@@ -21,4 +21,19 @@ var args = argv.option([
   {name: 'dump', type: 'boolean', description: "Dump collected data and do not send to Codecov"}
 ]).run();
 
-codecov.upload(args);
+// listen for piped input for 500ms
+var listeningTime = 500;
+process.stdin.setEncoding('utf8');
+process.stdin.on('readable', function() {
+  var report = process.stdin.read();
+  if (report != null) {
+    clearTimeout(timer);
+    if (!args.options.pipe) args.options.pipe = [];
+    args.options.pipe.push(report);
+  }
+});
+process.stdin.on('end', function() {
+  codecov.upload(args);
+});
+
+var timer = setTimeout(codecov.upload, listeningTime, args)
