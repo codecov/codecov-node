@@ -23,7 +23,7 @@ var args = argv.option([
 
 // listen for piped input for 500ms
 var listeningTime = 500;
-process.stdin.setEncoding('utf8');
+/*process.stdin.setEncoding('utf8');
 process.stdin.on('data', function(report) {
   if (report !== null) {
     clearTimeout(timer);
@@ -34,5 +34,5 @@ process.stdin.on('data', function(report) {
 process.stdin.on('end', function() {
   codecov.upload(args);
 });
-
+*/
 var timer = setTimeout(codecov.upload, listeningTime, args)
