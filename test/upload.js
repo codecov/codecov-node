@@ -1,5 +1,6 @@
 var fs = require('fs');
-var codecov = require("../lib/codecov");
+var codecov = require('../lib/codecov');
+var offlineErrors = require('../lib/offline');
 var execSync = require('child_process').execSync;
 if (!execSync) {
   var exec = require('execSync').exec;
@@ -24,7 +25,7 @@ describe("Codecov", function(){
                               done();
                             },
                             function(errCode, errMsg){
-                              if(errCode === 'EAI_AGAIN'){
+                              if(offlineErrors.indexOf(errCode) !== -1){
                                 self.skip(); // offline - we can not test upload
                                 return;
                               }
@@ -47,7 +48,7 @@ describe("Codecov", function(){
                               done();
                             },
                             function(errCode, errMsg){
-                              if(errCode === 'EAI_AGAIN'){
+                              if(offlineErrors.indexOf(errCode) !== -1){
                                 self.skip(); // offline - we can not test upload
                                 return;
                               }
@@ -69,7 +70,7 @@ describe("Codecov", function(){
                               done();
                             },
                             function(errCode, errMsg){
-                              if(errCode === 'EAI_AGAIN'){
+                              if(offlineErrors.indexOf(errCode) !== -1){
                                 done();
                               }
                               throw new Error(errMsg);
