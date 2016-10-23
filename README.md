@@ -24,7 +24,7 @@ This library currently supports the following CI companies: [Travis CI](https://
 #### Upload repo tokens
 > Repo tokens are **not** required for public repos tested on Travis-Org, CircleCI or AppVeyor.
 
-Repo tokens are neccessary to distinquish your repository from others. You can find your repo token on your repository page at Codecov. Set this unique uuid to `CODECOV_TOKEN` in your environment variables.
+Repo tokens are neccessary to distinguish your repository from others. You can find your repo token on your repository page at Codecov. Set this unique uuid to `CODECOV_TOKEN` in your environment variables.
 
 ```
 export CODECOV_TOKEN=":uuid-repo-token"
