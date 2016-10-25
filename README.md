@@ -10,7 +10,7 @@
 ## Installation:
 Add the latest version of `codecov` to your package.json:
 ```
-npm install codecov --save
+npm install codecov --save-dev
 ```
 
 ## Usage:
