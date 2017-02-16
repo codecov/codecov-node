@@ -51,11 +51,11 @@ describe("Codecov", function(){
     expect(res.debug).to.contain('failed: notreal.txt');
   });
 
-  it("can detect .bowerrc with directory", function(){
-    fs.writeFileSync('.bowerrc', '{"directory": "test"}');
-    var res = codecov.upload({options: {dump: true}});
-    expect(res.files).to.eql([]);
-  });
+  // it("can detect .bowerrc with directory", function(){
+  //   fs.writeFileSync('.bowerrc', '{"directory": "test"}');
+  //   var res = codecov.upload({options: {dump: true}});
+  //   expect(res.files).to.eql([]);
+  // });
 
   it("can detect .bowerrc without directory", function(){
     fs.writeFileSync('.bowerrc', '{"key": "value"}');
