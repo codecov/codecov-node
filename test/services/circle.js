@@ -51,4 +51,14 @@ describe("Circle CI Provider", function(){
     });
   });
 
+  it ("throws if repo slug cannot be detected", function(){
+    delete process.env.CIRCLE_PR_NUMBER;
+    delete process.env.CIRCLE_PROJECT_USERNAME;
+    delete process.env.CIRCLE_PROJECT_REPONAME;
+    delete process.env.CIRCLE_REPOSITORY_URL;
+    expect(function(){
+      circle.configuration();
+    }).to.throw(Error);
+  });
+
 });
