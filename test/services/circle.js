@@ -58,7 +58,7 @@ describe("Circle CI Provider", function(){
     delete process.env.CIRCLE_REPOSITORY_URL;
     expect(function(){
       circle.configuration();
-    }).to.throw(Error);
+    }).to.throwError();
   });
 
 });
