@@ -74,3 +74,6 @@ nyc npm test
 nyc report --reporter=text-lcov > coverage.lcov
 ./node_modules/.bin/codecov
 ```
+
+## Change Log
+v2.0.0 No longer supports node v0.10 because of the execSync.
