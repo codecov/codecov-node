@@ -128,7 +128,7 @@ describe("Codecov", function(){
 
   it('should have the correct version number', function() {
     var version = require('../package.json').version
-    expect(codecov.version).to.eql(version)
+    expect(codecov.version).to.eql('v' + version)
   })
 
 
