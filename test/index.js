@@ -126,5 +126,10 @@ describe("Codecov", function(){
     expect(res.debug).to.contain('find folder/path -type f -name \'*.gcno\' -not -path \'ignore/this/folder\' -exec llvm-gcov -o {} +');
   });
 
+  it('should have the correct version number', function() {
+    var version = require('../package.json').version
+    expect(codecov.version).to.eql('v' + version)
+  })
+
 
 });
