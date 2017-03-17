@@ -18,6 +18,7 @@ var args = argv.option([
   {name: 'build', short: 'B', type: 'string', description: "Specify a custom build number to distinguish ci jobs, provided automatically for supported ci companies"},
   {name: 'slug', short: 'r', type: 'string', description: "Specify repository slug for Enterprise ex. owner/repo"},
   {name: 'url', short: 'u', type: 'string', description: "Your Codecov endpoint"},
+  {name: 'flags', short: 'F', type: 'string', description: "Codecov Flags"},
   {name: 'dump', type: 'boolean', description: "Dump collected data and do not send to Codecov"}
 ]).run();
 
