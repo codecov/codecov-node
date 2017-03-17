@@ -1,8 +1,6 @@
 var fs = require('fs');
 var codecov = require('../lib/codecov');
 var offlineErrors = require('../lib/offline');
-var execSync = require('child_process').execSync;
-
 
 describe("Codecov", function(){
   it("can get upload to v2", function(done){
