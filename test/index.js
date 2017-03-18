@@ -101,6 +101,11 @@ describe("Codecov", function(){
     expect(res.query.slug).to.eql('value');
   });
 
+  it("can get flags from cli args", function(){
+    var res = codecov.upload({options: {dump: true, flags: 'value'}});
+    expect(res.query.flags).to.eql('value');
+  });
+
   it("can include env in cli", function(){
     process.env.HELLO = 'world';
     var res = codecov.upload({options: {dump: true, env: 'HELLO,VAR1'}});
