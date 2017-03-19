@@ -1,19 +1,18 @@
-var detect = require("../lib/detect");
-var execSync = require('child_process').execSync;
+/* global expect */
+var detect = require('../lib/detect')
+var execSync = require('child_process').execSync
 
-describe("Codecov", function(){
+describe('Codecov', function () {
+  it('can detect existing appveyor service', function () {
+    process.env.TRAVIS = 'true'
 
-  it("can detect existing appveyor service", function(){
-    process.env.TRAVIS = "true";
+    expect(detect().service).to.eql('travis')
 
-    expect(detect().service).to.eql("travis");
+    process.env.TRAVIS = ''
+  })
 
-    process.env.TRAVIS = "";
-  });
-
-  it("can select local git service if no service is found", function(){
-    expect(detect().commit).to.match(/^\w{40}$/);
-    expect(detect().commit).to.eql(execSync("git rev-parse HEAD || hg id -i --debug | tr -d '+'").toString().trim());
-  });
-
-});
+  it('can select local git service if no service is found', function () {
+    expect(detect().commit).to.match(/^\w{40}$/)
+    expect(detect().commit).to.eql(execSync("git rev-parse HEAD || hg id -i --debug | tr -d '+'").toString().trim())
+  })
+})
