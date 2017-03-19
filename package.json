@@ -4,6 +4,7 @@
   "description": "Uploading report to Codecov: https://codecov.io",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec"
   },
   "repository": {
@@ -34,9 +35,14 @@
     "argv": "0.0.2"
   },
   "devDependencies": {
+    "eslint": "3.18.0",
+    "eslint-config-standard": "7.1.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-node": "4.2.1",
+    "eslint-plugin-promise": "3.5.0",
+    "eslint-plugin-standard": "2.1.1",
     "expect.js": "^0.3.1",
     "istanbul": "^0.4.5",
-    "jshint": "^2.9.3",
     "mocha": "^3.0.2"
   }
 }

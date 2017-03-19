@@ -4,7 +4,7 @@ test:
 	@NODE_ENV=test ./node_modules/.bin/mocha -b --reporter $(REPORTER) --recursive
 
 lint:
-	./node_modules/.bin/jshint ./lib ./test ./index.js
+	./node_modules/.bin/eslint ./lib ./test ./index.js
 
 deploy:
 	$(eval VERSION := $(shell cat package.json | grep '"version"' | cut -d\" -f4))

@@ -1,8 +1,10 @@
 machine:
   node:
-    version: 0.12.7
+    version: 4
 
 test:
+  pre:
+    - npm run lint
   post:
     - ./bin/codecov -f coverage/coverage.json
 
