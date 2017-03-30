@@ -1,5 +1,5 @@
 var drone = require("../../lib/services/drone");
-var execSync = require('child_process').execSync;
+var git = require("../../lib/git");
 
 describe("Drone.io CI Provider", function(){
 
@@ -15,7 +15,7 @@ describe("Drone.io CI Provider", function(){
     process.env.DRONE_BUILD_DIR = '/';
     expect(drone.configuration()).to.eql({
       service : 'drone.io',
-      commit : execSync("git rev-parse HEAD || hg id -i --debug | tr -d '+'").toString().trim(),
+      commit : git.head(),
       build : '1234',
       root : '/',
       branch : 'master',
