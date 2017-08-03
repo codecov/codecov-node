@@ -1,7 +1,9 @@
 # Codecov NodeJS Uploader
 
 [![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url] [![codecov.io](https://codecov.io/github/codecov/codecov-node/coverage.svg?branch=master)](https://codecov.io/github/codecov/codecov-node?branch=master)
+[![Build Status][travis-image]][travis-url]
+[![Build Status][appveyor-image]][appveyor-url]
+[![codecov.io](https://codecov.io/github/codecov/codecov-node/coverage.svg?branch=master)](https://codecov.io/github/codecov/codecov-node?branch=master)
 [![Dependency Status][depstat-image]][depstat-url]
 [![Dev Dependency Status][devdepstat-image]][devdepstat-url]
 
@@ -57,6 +59,9 @@ istanbul cover test.js
 
 [travis-image]: https://travis-ci.org/codecov/codecov-node.svg?branch=master
 [travis-url]: https://travis-ci.org/codecov/codecov-node
+
+[appveyor-image]: https://ci.appveyor.com/api/projects/status/ea1suiv0tprnq61l?svg=true
+[appveyor-url]: https://ci.appveyor.com/project/eddiemoore/codecov-node/branch/master
 
 [npm-url]: https://npmjs.org/package/codecov
 [npm-image]: https://img.shields.io/npm/v/codecov.svg
