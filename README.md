@@ -14,6 +14,10 @@ Add the latest version of `codecov` to your package.json:
 ```
 npm install codecov --save-dev
 ```
+or
+```
+yarn add codecov --dev
+```
 
 ## Usage:
 
@@ -26,7 +30,7 @@ This library currently supports the following CI companies: [Travis CI](https://
 #### Upload repo tokens
 > Repo tokens are **not** required for public repos tested on Travis-Org, CircleCI or AppVeyor.
 
-Repo tokens are neccessary to distinguish your repository from others. You can find your repo token on your repository page at Codecov. Set this unique uuid to `CODECOV_TOKEN` in your environment variables.
+Repo tokens are necessary to distinguish your repository from others. You can find your repo token on your repository page at Codecov. Set this unique uuid to `CODECOV_TOKEN` in your environment variables.
 
 ```
 export CODECOV_TOKEN=":uuid-repo-token"
@@ -86,3 +90,4 @@ nyc report --reporter=text-lcov > coverage.lcov
 - v2.0.2 Display correct version number in console.
 - v2.1.0 Flags supported http://docs.codecov.io/docs/flags
 - v2.2.0 Support for Jenkins Blue Ocean. Clean reports after upload. Fix for Gitlab.
+- v2.3.0 Added support for Windows. Updated dependencies.
