@@ -1,6 +1,6 @@
 {
   "name": "codecov",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Uploading report to Codecov: https://codecov.io",
   "main": "index.js",
   "scripts": {
