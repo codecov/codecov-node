@@ -1,6 +1,6 @@
 {
   "name": "codecov",
-  "version": "2.3.1",
+  "version": "2.3.0",
   "description": "Uploading report to Codecov: https://codecov.io",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "codecov": "./bin/codecov"
   },
   "engines": {
-    "node": ">=0.12"
+    "node": ">=1.0"
   },
   "author": "Codecov <hello@codecov.io>",
   "license": "MIT",
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/codecov/codecov-node",
   "dependencies": {
-    "request": "2.77.0",
+    "request": "2.81.0",
     "urlgrey": "0.4.4",
     "argv": "0.0.2"
   },
