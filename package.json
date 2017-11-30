@@ -2,9 +2,8 @@
   "name": "codecov",
   "version": "3.0.0",
   "description": "Uploading report to Codecov: https://codecov.io",
-  "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec"
+    "test": ""
   },
   "repository": {
     "type": "git",
@@ -29,14 +28,7 @@
   },
   "homepage": "https://github.com/codecov/codecov-node",
   "dependencies": {
-    "request": "2.81.0",
-    "urlgrey": "0.4.4",
-    "argv": "0.0.2"
   },
   "devDependencies": {
-    "expect.js": "^0.3.1",
-    "istanbul": "^0.4.5",
-    "jshint": "^2.9.3",
-    "mocha": "^3.0.2"
   }
 }
