@@ -6,8 +6,8 @@ var cb = require('../').cb
 
 test('Callback error', function (t) {
   var spy = sinon.spy()
-  var stub = sinon.stub(console, 'error').callsFake(spy)
-  var log = sinon.stub(console, 'log').callsFake(spy)
+  var stub = sinon.stub(console, 'error', spy)
+  var log = sinon.stub(console, 'log', spy)
   var error = new Error('Something went wrong')
   
   cb(error, 'stdout', 'stderr')
@@ -23,8 +23,8 @@ test('Callback error', function (t) {
 
 test('Callback success', function (t) {
   var spy = sinon.spy()
-  var stub = sinon.stub(console, 'log').callsFake(spy)
-  var err = sinon.stub(console, 'error').callsFake(spy)
+  var stub = sinon.stub(console, 'log', spy)
+  var err = sinon.stub(console, 'error', spy)
 
   cb(null, 'stdout', 'stderr')
 

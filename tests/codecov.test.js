@@ -7,7 +7,7 @@ var cb = require('../').cb
 
 test('Call with no args', function (t) {
   var spy = sinon.spy()
-  var stub = sinon.stub(child_process, 'exec').callsFake(spy)
+  var stub = sinon.stub(child_process, 'exec', spy)
   codecov(['node', 'file.js'])
 
   stub.restore()
@@ -23,7 +23,7 @@ test('Call with no args', function (t) {
 
 test('Call with args', function (t) {
   var spy = sinon.spy()
-  var stub = sinon.stub(child_process, 'exec').callsFake(spy)
+  var stub = sinon.stub(child_process, 'exec', spy)
   codecov(['node', 'file.js', '-t', 'thx1138'])
 
   stub.restore()

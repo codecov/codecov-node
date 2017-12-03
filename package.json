@@ -31,7 +31,7 @@
   "dependencies": {},
   "devDependencies": {
     "istanbul": "0.4.5",
-    "sinon": "4.1.2",
+    "sinon": "1.17.7",
     "tape": "4.8.0"
   }
 }
