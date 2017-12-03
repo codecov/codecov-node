@@ -9,6 +9,9 @@ node_js:
   - "5"
   - "4"
   - "iojs"
+  - "0.12"
+  - "0.10"
+  - "0.8"
 
 after_success:
   - ./bin/codecov -e TRAVIS_NODE_VERSION -f coverage/coverage.json

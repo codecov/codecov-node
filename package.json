@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "description": "Uploading report to Codecov: https://codecov.io",
   "scripts": {
-    "test": ""
+    "test": "istanbul cover ./node_modules/.bin/tape ./tests/*"
   },
   "repository": {
     "type": "git",
@@ -15,11 +15,12 @@
     "codecov.io",
     "codecov"
   ],
+  "main": "./lib/index",
   "bin": {
     "codecov": "./bin/codecov"
   },
   "engines": {
-    "node": ">=1.0"
+    "node": ">=0.8"
   },
   "author": "Codecov <hello@codecov.io>",
   "license": "MIT",
@@ -27,8 +28,10 @@
     "url": "https://github.com/codecov/codecov-node/issues"
   },
   "homepage": "https://github.com/codecov/codecov-node",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "istanbul": "0.4.5",
+    "sinon": "4.1.2",
+    "tape": "4.8.0"
   }
 }
