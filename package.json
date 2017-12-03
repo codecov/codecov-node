@@ -20,7 +20,7 @@
     "codecov": "./bin/codecov"
   },
   "engines": {
-    "node": ">=0.8"
+    "node": ">=0.1.90"
   },
   "author": "Codecov <hello@codecov.io>",
   "license": "MIT",
