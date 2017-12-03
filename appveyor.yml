@@ -25,7 +25,7 @@ test_script:
   - npm run test
 
 after_test:
-  - node .\bin\codecov -f coverage\coverage.json
+  - node .\bin\codecov -f coverage\coverage.json -F win
 
 build: off
 

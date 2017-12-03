@@ -13,4 +13,4 @@ node_js:
   - "0.10"
 
 after_success:
-  - ./bin/codecov -e TRAVIS_NODE_VERSION -f coverage/coverage.json
+  - ./bin/codecov -e TRAVIS_NODE_VERSION -f coverage/coverage.json -F unix
