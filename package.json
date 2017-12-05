@@ -1,6 +1,6 @@
 {
   "name": "codecov",
-  "version": "3.0.0",
+  "version": "4.0.0-0",
   "description": "Uploading report to Codecov: https://codecov.io",
   "scripts": {
     "test": "istanbul cover ./node_modules/.bin/tape ./tests/*"
