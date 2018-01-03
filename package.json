@@ -31,7 +31,8 @@
   "dependencies": {
     "request": "2.81.0",
     "urlgrey": "0.4.4",
-    "argv": "0.0.2"
+    "argv": "0.0.2",
+    "js-yaml": "3.10.0"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
