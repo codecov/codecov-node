@@ -36,6 +36,8 @@ Repo tokens are necessary to distinguish your repository from others. You can fi
 export CODECOV_TOKEN=":uuid-repo-token"
 # or
 ./node_modules/.bin/codecov --token=:token
+# or
+nyc report --reporter=text-lcov | ./node_modules/.bin/codecov --pipe
 ```
 
 #### [Istanbul](https://github.com/gotwarlost/istanbul)
