@@ -20,28 +20,21 @@ var args = argv.option([
   {name: 'slug', short: 'r', type: 'string', description: "Specify repository slug for Enterprise ex. owner/repo"},
   {name: 'url', short: 'u', type: 'string', description: "Your Codecov endpoint"},
   {name: 'flags', short: 'F', type: 'string', description: "Codecov Flags"},
-  {name: 'dump', type: 'boolean', description: "Dump collected data and do not send to Codecov"}
+  {name: 'dump', type: 'boolean', description: "Dump collected data and do not send to Codecov"},
+  {name: 'pipe', short: 'l', type: 'boolean', description: "Listen to stdin for coverage data"}
 ]).run();
 
-// listen for piped input for 500ms
-var listeningTime = 500;
-var readingPiped = false;
-process.stdin.setEncoding('utf8');
-process.stdin.on('data', function(report) {
-  if (report !== null) {
-    readingPiped = true;
-    clearTimeout(timer);
-    if (!args.options.pipe) args.options.pipe = [];
-    args.options.pipe.push(report);
-  }
-});
-process.stdin.on('end', function() {
-  if (readingPiped) codecov.upload(args);
-});
+if (args.options.pipe) {
+  process.stdin.setEncoding('utf8');
+  args.options.pipe = [];
 
-var timer = setTimeout(function() {
-  if (!readingPiped) {
+  process.stdin.on('data', function(report) {
+    args.options.pipe.push(report);
+  });
+
+  process.stdin.on('end', function() {
     codecov.upload(args);
-    process.exit();
-  }
-}, listeningTime);
+  });
+} else {
+  codecov.upload(args);
+}
