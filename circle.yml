@@ -1,10 +1,10 @@
 machine:
   node:
-    version: 0.12.7
+    version: 4
 
 test:
   post:
-    - ./bin/codecov
+    - ./bin/codecov -f coverage/coverage.json
 
 deployment:
   suite:

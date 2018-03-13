@@ -1,7 +1,9 @@
 # Codecov NodeJS Uploader
 
 [![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url] [![codecov.io](https://codecov.io/github/codecov/codecov-node/coverage.svg?branch=master)](https://codecov.io/github/codecov/codecov-node?branch=master)
+[![Build Status][travis-image]][travis-url]
+[![Build Status][appveyor-image]][appveyor-url]
+[![codecov.io](https://codecov.io/github/codecov/codecov-node/coverage.svg?branch=master)](https://codecov.io/github/codecov/codecov-node?branch=master)
 [![Dependency Status][depstat-image]][depstat-url]
 [![Dev Dependency Status][devdepstat-image]][devdepstat-url]
 
@@ -10,7 +12,11 @@
 ## Installation:
 Add the latest version of `codecov` to your package.json:
 ```
-npm install codecov --save
+npm install codecov --save-dev
+```
+or
+```
+yarn add codecov --dev
 ```
 
 ## Usage:
@@ -24,7 +30,7 @@ This library currently supports the following CI companies: [Travis CI](https://
 #### Upload repo tokens
 > Repo tokens are **not** required for public repos tested on Travis-Org, CircleCI or AppVeyor.
 
-Repo tokens are neccessary to distinquish your repository from others. You can find your repo token on your repository page at Codecov. Set this unique uuid to `CODECOV_TOKEN` in your environment variables.
+Repo tokens are necessary to distinguish your repository from others. You can find your repo token on your repository page at Codecov. Set this unique uuid to `CODECOV_TOKEN` in your environment variables.
 
 ```
 export CODECOV_TOKEN=":uuid-repo-token"
@@ -58,6 +64,9 @@ istanbul cover test.js
 [travis-image]: https://travis-ci.org/codecov/codecov-node.svg?branch=master
 [travis-url]: https://travis-ci.org/codecov/codecov-node
 
+[appveyor-image]: https://ci.appveyor.com/api/projects/status/ea1suiv0tprnq61l?svg=true
+[appveyor-url]: https://ci.appveyor.com/project/eddiemoore/codecov-node/branch/master
+
 [npm-url]: https://npmjs.org/package/codecov
 [npm-image]: https://img.shields.io/npm/v/codecov.svg
 
@@ -74,3 +83,12 @@ nyc npm test
 nyc report --reporter=text-lcov > coverage.lcov
 ./node_modules/.bin/codecov
 ```
+
+## Change Log
+- v2.0.0 No longer supports node v0.10 because of the execSync.
+- v2.0.1 Publish as latest instead of next.
+- v2.0.2 Display correct version number in console.
+- v2.1.0 Flags supported http://docs.codecov.io/docs/flags
+- v2.2.0 Support for Jenkins Blue Ocean. Clean reports after upload. Fix for Gitlab.
+- v2.3.0 Added support for Windows. Updated dependencies.
+- v3.0.0 No longer supports node v0.12 because of new version of request

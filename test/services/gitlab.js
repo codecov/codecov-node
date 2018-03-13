@@ -3,7 +3,7 @@ var gitlab = require("../../lib/services/gitlab");
 describe("Gitlab CI Provider", function(){
 
   it ("can detect gitlab", function(){
-    process.env.CI_SERVER_NAME = "GitLab CI";
+    process.env.GITLAB_CI = "true";
     expect(gitlab.detect()).to.be(true);
   });
 

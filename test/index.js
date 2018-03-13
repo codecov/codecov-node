@@ -1,13 +1,9 @@
 var fs = require('fs');
 var codecov = require("../lib/codecov");
 var execSync = require('child_process').execSync;
-if (!execSync) {
-  var exec = require('execSync').exec;
-  var execSync = function(cmd){
-    return exec(cmd).stdout;
-  };
-}
 
+var isWindows = process.platform.match(/win32/) || process.platform.match(/win64/);
+var pathSeparator = !isWindows ? '/' : '\\';
 
 describe("Codecov", function(){
   beforeEach(function(){
@@ -23,6 +19,7 @@ describe("Codecov", function(){
   });
 
   it("can get a token passed via env variable", function(){
+    this.timeout(10000);
     process.env.codecov_token = 'abc123';
     expect(codecov.upload({options: {dump: true}}).query.token).to.eql('abc123');
     delete process.env.codecov_token;
@@ -36,13 +33,13 @@ describe("Codecov", function(){
 
   it("can auto detect reports", function(){
     var res = codecov.upload({options: {dump: true}});
-    expect(res.files[0].split('/').pop()).to.eql('example.coverage.txt');
+    expect(res.files[0].split(pathSeparator).pop()).to.eql('coverage.json');
     expect(res.body).to.contain('this file is intentionally left blank');
   });
 
   it("can specify report in cli", function(){
-    var res = codecov.upload({options: {dump: true, file: 'test/example.coverage.txt'}});
-    expect(res.files[0].split('/').pop()).to.eql('example.coverage.txt');
+    var res = codecov.upload({options: {dump: true, file: 'test' + pathSeparator + 'coverage.json'}});
+    expect(res.files[0].split(pathSeparator).pop()).to.eql('coverage.json');
     expect(res.body).to.contain('this file is intentionally left blank');
   });
 
@@ -51,16 +48,16 @@ describe("Codecov", function(){
     expect(res.debug).to.contain('failed: notreal.txt');
   });
 
-  it("can detect .bowerrc with directory", function(){
-    fs.writeFileSync('.bowerrc', '{"directory": "test"}');
-    var res = codecov.upload({options: {dump: true}});
-    expect(res.files).to.eql([]);
-  });
+  // it("can detect .bowerrc with directory", function(){
+  //   fs.writeFileSync('.bowerrc', '{"directory": "test"}');
+  //   var res = codecov.upload({options: {dump: true}});
+  //   expect(res.files).to.eql([]);
+  // });
 
   it("can detect .bowerrc without directory", function(){
     fs.writeFileSync('.bowerrc', '{"key": "value"}');
     var res = codecov.upload({options: {dump: true}});
-    expect(res.files[0].split('/').pop()).to.eql('example.coverage.txt');
+    expect(res.files[0].split(pathSeparator).pop()).to.eql('coverage.json');
     expect(res.body).to.contain('this file is intentionally left blank');
   });
 
@@ -101,6 +98,11 @@ describe("Codecov", function(){
     expect(res.query.slug).to.eql('value');
   });
 
+  it("can get flags from cli args", function(){
+    var res = codecov.upload({options: {dump: true, flags: 'value'}});
+    expect(res.query.flags).to.eql('value');
+  });
+
   it("can include env in cli", function(){
     process.env.HELLO = 'world';
     var res = codecov.upload({options: {dump: true, env: 'HELLO,VAR1'}});
@@ -123,17 +125,26 @@ describe("Codecov", function(){
                                         'gcov-glob': 'ignore/this/folder',
                                         'gcov-exec': 'llvm-gcov',
                                         'gcov-args': '-o'}});
-    expect(res.debug).to.contain('find folder/path -type f -name \'*.gcno\' -not -path \'ignore/this/folder\' -exec llvm-gcov -o {} +');
+    if(!isWindows) {
+      expect(res.debug).to.contain('find folder/path -type f -name \'*.gcno\' -not -path \'ignore/this/folder\' -exec llvm-gcov -o {} +');
+    } else {
+      expect(res.debug).to.contain('for /f "delims=" %g in (\'dir /a-d /b /s *.gcno ^| findstr /i /v ignore/this/folder\') do llvm-gcov -o %g');
+    }
   });
 
   it("can read piped reports", function(done){
     var exec = require('child_process').exec;
-    var childProcess = exec('cat test/example.coverage.txt | bin/codecov --dump --disable=gcov', function(err, stdout, stderr){
+    var childProcess = exec('cat test/coverage.json | bin/codecov --dump --disable=gcov', function(err, stdout, stderr){
       expect(stdout.toString()).to.contain('path=piped');
       expect(stdout.toString()).to.contain('this file is intentionally left blank');
       childProcess.kill();
       done();
     });
   });
+
+  it('should have the correct version number', function() {
+    var version = require('../package.json').version
+    expect(codecov.version).to.eql('v' + version)
+  })
 
 });
