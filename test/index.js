@@ -40,7 +40,9 @@ describe('Codecov', function() {
 
   it('can auto detect reports', function() {
     var res = codecov.upload({ options: { dump: true } })
-    expect(res.files[0].split(pathSeparator).pop()).to.eql('coverage.json')
+    expect(res.files[0].split(pathSeparator).pop()).to.eql(
+      'example.coverage.txt'
+    )
     expect(res.body).to.contain('this file is intentionally left blank')
   })
 
@@ -71,7 +73,9 @@ describe('Codecov', function() {
   it('can detect .bowerrc without directory', function() {
     fs.writeFileSync('.bowerrc', '{"key": "value"}')
     var res = codecov.upload({ options: { dump: true } })
-    expect(res.files[0].split(pathSeparator).pop()).to.eql('coverage.json')
+    expect(res.files[0].split(pathSeparator).pop()).to.eql(
+      'example.coverage.txt'
+    )
     expect(res.body).to.contain('this file is intentionally left blank')
   })
 
