@@ -1,21 +1,17 @@
 {
   "name": "codecov",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Uploading report to Codecov: https://codecov.io",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec"
+    "test":
+      "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/codecov/codecov-node"
   },
-  "keywords": [
-    "coverage",
-    "code-coverage",
-    "codecov.io",
-    "codecov"
-  ],
+  "keywords": ["coverage", "code-coverage", "codecov.io", "codecov"],
   "bin": {
     "codecov": "./bin/codecov"
   },
