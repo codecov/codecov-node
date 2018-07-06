@@ -62,7 +62,9 @@ describe('Codecov', function() {
         expect(body).to.contain(
           'https://codecov.io/github/codecov/ci-repo/commit/c739768fcac68144a3a6d82305b9c4106934d31a'
         )
-        expect(fs.exists('report.tmp')).to.be.false
+        fs.exists('report.tmp', function(exists) {
+          expect(exists).to.be.false
+        })
         done()
       },
       function(errCode, errMsg) {
