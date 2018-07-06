@@ -43,7 +43,9 @@ describe('Codecov', function() {
 
   it('can remove files after uploading', function(done) {
     fs.writeFileSync('report.tmp', '<content>')
-    expect(fs.exists('report.tmp')).to.be.true
+    fs.exists('report.tmp', function(exists) {
+      expect(exists).to.be.true
+    })
 
     var self = this
     codecov.sendToCodecovV2(
