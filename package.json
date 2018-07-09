@@ -17,7 +17,7 @@
     "codecov": "./bin/codecov"
   },
   "engines": {
-    "node": ">=1.0"
+    "node": ">=4.0"
   },
   "author": "Codecov <hello@codecov.io>",
   "license": "MIT",
@@ -26,18 +26,17 @@
   },
   "homepage": "https://github.com/codecov/codecov-node",
   "dependencies": {
-    "argv": "0.0.2",
-    "ignore-walk": "3.0.0",
-    "request": "2.81.0",
-    "urlgrey": "0.4.4"
+    "argv": "^0.0.2",
+    "ignore-walk": "^3.0.1",
+    "request": "^2.87.0",
+    "urlgrey": "^0.4.4"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
-    "husky": "0.14.3",
+    "husky": "^0.14.3",
     "istanbul": "^0.4.5",
-    "jshint": "^2.9.3",
-    "lint-staged": "7.2.0",
-    "mocha": "^3.0.2",
+    "lint-staged": "^7.2.0",
+    "mocha": "^5.2.0",
     "prettier": "1.13.7"
   },
   "lint-staged": {
