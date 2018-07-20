@@ -1,6 +1,5 @@
 var fs = require('fs')
 var codecov = require('../lib/codecov')
-var execSync = require('child_process').execSync
 
 var isWindows =
   process.platform.match(/win32/) || process.platform.match(/win64/)
