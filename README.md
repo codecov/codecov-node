@@ -94,3 +94,7 @@ nyc report --reporter=text-lcov > coverage.lcov
 - v2.2.0 Support for Jenkins Blue Ocean. Clean reports after upload. Fix for Gitlab.
 - v2.3.0 Added support for Windows. Updated dependencies.
 - v3.0.0 No longer supports node v0.12 because of new version of request
+- v3.0.1 Security fixes
+- v3.0.2 Security fixes
+- v3.0.3 Support non-git/hg root dirs
+- v3.0.4 Security fixes
