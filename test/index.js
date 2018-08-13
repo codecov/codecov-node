@@ -181,5 +181,6 @@ describe('Codecov', function() {
       codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
     ).to.eql('FOO.yml')
     fs.unlinkSync('FOO.yml')
+    delete process.env.CODECOV_YML
   })
 })
