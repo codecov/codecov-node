@@ -183,4 +183,13 @@ describe('Codecov', function() {
     fs.unlinkSync('FOO.yml')
     delete process.env.CODECOV_YML
   })
+
+  it('can get config from cli args', function() {
+    fs.writeFileSync('foo.yml', '')
+    var res = codecov.upload({
+      options: { dump: true, yml: 'foo.yml', disable: 'detect' },
+    })
+    expect(res.query.yaml).to.eql('foo.yml')
+    fs.unlinkSync('foo.yml')
+  })
 })
