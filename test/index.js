@@ -187,7 +187,7 @@ describe('Codecov', function() {
   it('can get config from cli args', function() {
     fs.writeFileSync('foo.yml', '')
     var res = codecov.upload({
-      options: { dump: true, y: 'foo.yml', disable: 'detect' },
+      options: { dump: true, yml: 'foo.yml', disable: 'detect' },
     })
     expect(res.query.yaml).to.eql('foo.yml')
     fs.unlinkSync('foo.yml')
