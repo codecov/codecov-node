@@ -1,4 +1,5 @@
 var fs = require('fs')
+var mockFs = require('mock-fs')
 var codecov = require('../lib/codecov')
 
 var isWindows =
@@ -35,6 +36,69 @@ describe('Codecov', function() {
     expect(
       codecov.upload({ options: { dump: true, token: 'qwerty' } }).query.token
     ).to.eql('qwerty')
+  })
+
+  it('can read a codecov.yml file', function() {
+    mockFs({
+      'codecov.yml': 'codecov:\n  token: fake-token',
+    })
+    expect(codecov.upload({ options: { dump: true } }).query.token).to.eql(
+      'fake-token'
+    )
+    mockFs.restore()
+  })
+  it('can read a .codecov.yml file', function() {
+    mockFs({
+      '.codecov.yml': 'codecov:\n  token: fake-token-dotfile',
+    })
+    expect(codecov.upload({ options: { dump: true } }).query.token).to.eql(
+      'fake-token-dotfile'
+    )
+    mockFs.restore()
+  })
+  it('should have no token if yaml file does not supplied', function() {
+    mockFs({
+      '.codecov.yml': 'codecov:\n  noconfig: true',
+    })
+    expect(codecov.upload({ options: { dump: true } }).query.token).to.eql(
+      undefined
+    )
+    mockFs.restore()
+  })
+
+  it('token precedence should be respected', function() {
+    // options.token || .codecov.yml/codecov.yml file || codecov_token || CODECOV_TOKEN
+    mockFs({
+      '.codecov.yml': 'codecov:\n  token: fake-token-dotfile',
+    })
+    var upload = codecov.upload({ options: { dump: true, token: 'qwerty' } })
+    expect(upload.query.token).to.eql('qwerty')
+    mockFs.restore()
+
+    process.env.codecov_token = 'abc123'
+    upload = codecov.upload({ options: { dump: true, token: 'qwerty2' } })
+    expect(upload.query.token).to.eql('qwerty2')
+    delete process.env.codecov_token
+
+    process.env.CODECOV_TOKEN = 'ABC123'
+    upload = codecov.upload({ options: { dump: true, token: 'qwerty3' } })
+    expect(upload.query.token).to.eql('qwerty3')
+    delete process.env.CODECOV_TOKEN
+
+    mockFs({
+      '.codecov.yml': 'codecov:\n  token: fake-token-dotfile',
+    })
+    process.env.codecov_token = 'abc123'
+    upload = codecov.upload({ options: { dump: true } })
+    expect(upload.query.token).to.eql('fake-token-dotfile')
+    mockFs.restore()
+
+    process.env.codecov_token = 'abc123'
+    process.env.CODECOV_TOKEN = 'ABC123'
+    upload = codecov.upload({ options: { dump: true } })
+    expect(upload.query.token).to.eql('abc123')
+    delete process.env.codecov_token
+    delete process.env.CODECOV_TOKEN
   })
 
   it('can auto detect reports', function() {
