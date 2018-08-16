@@ -30,6 +30,7 @@ describe('Codecov', function() {
     expect(codecov.upload({ options: { dump: true } }).query.token).to.eql(
       'ABC123'
     )
+    delete process.env.CODECOV_TOKEN
   })
 
   it('can get a token passed in cli', function() {
@@ -189,6 +190,7 @@ describe('Codecov', function() {
     var res = codecov.upload({ options: { dump: true, env: 'HELLO,VAR1' } })
     expect(res.body).to.contain('HELLO=world\n')
     expect(res.body).to.contain('VAR1=\n')
+    delete process.env.HELLO
   })
 
   it('can include env in env', function() {
@@ -198,6 +200,8 @@ describe('Codecov', function() {
     expect(res.body).to.contain('HELLO=world\n')
     expect(res.body).to.contain('VAR1=\n')
     expect(res.body).to.contain('VAR2=\n')
+    delete process.env.HELLO
+    delete process.env.CODECOV_ENV
   })
 
   it('can have custom args for gcov', function() {
