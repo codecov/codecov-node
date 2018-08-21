@@ -161,4 +161,35 @@ describe('Codecov', function() {
     var version = require('../package.json').version
     expect(codecov.version).to.eql('v' + version)
   })
+
+  it('Should use codecov.yml via env variable', function() {
+    expect(
+      codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
+    ).to.eql('codecov.yml')
+
+    fs.writeFileSync('foo.yml', '')
+    process.env.codecov_yml = 'foo.yml'
+    expect(
+      codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
+    ).to.eql('foo.yml')
+    fs.unlinkSync('foo.yml')
+    delete process.env.codecov_yml
+
+    fs.writeFileSync('FOO.yml', '')
+    process.env.CODECOV_YML = 'FOO.yml'
+    expect(
+      codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
+    ).to.eql('FOO.yml')
+    fs.unlinkSync('FOO.yml')
+    delete process.env.CODECOV_YML
+  })
+
+  it('can get config from cli args', function() {
+    fs.writeFileSync('foo.yml', '')
+    var res = codecov.upload({
+      options: { dump: true, yml: 'foo.yml', disable: 'detect' },
+    })
+    expect(res.query.yaml).to.eql('foo.yml')
+    fs.unlinkSync('foo.yml')
+  })
 })
