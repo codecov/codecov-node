@@ -231,33 +231,40 @@ describe('Codecov', function() {
   })
 
   it('Should use codecov.yml via env variable', function() {
+    var CWD = process.cwd()
     expect(
       codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
-    ).to.eql('codecov.yml')
+    ).to.eql(CWD + '/codecov.yml')
 
-    fs.writeFileSync('foo.yml', '')
+    mockFs({
+      'foo.yml': '',
+    })
     process.env.codecov_yml = 'foo.yml'
     expect(
       codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
-    ).to.eql('foo.yml')
-    fs.unlinkSync('foo.yml')
+    ).to.eql(CWD + '/foo.yml')
+    mockFs.restore()
     delete process.env.codecov_yml
 
-    fs.writeFileSync('FOO.yml', '')
+    mockFs({
+      'FOO.yml': '',
+    })
     process.env.CODECOV_YML = 'FOO.yml'
     expect(
       codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
-    ).to.eql('FOO.yml')
-    fs.unlinkSync('FOO.yml')
+    ).to.eql(CWD + '/FOO.yml')
+    mockFs.restore()
     delete process.env.CODECOV_YML
   })
 
   it('can get config from cli args', function() {
-    fs.writeFileSync('foo.yml', '')
+    mockFs({
+      'foo.yml': '',
+    })
     var res = codecov.upload({
       options: { dump: true, yml: 'foo.yml', disable: 'detect' },
     })
-    expect(res.query.yaml).to.eql('foo.yml')
-    fs.unlinkSync('foo.yml')
+    expect(res.query.yaml).to.eql(process.cwd() + '/foo.yml')
+    mockFs.restore()
   })
 })
