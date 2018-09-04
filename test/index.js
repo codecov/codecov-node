@@ -1,4 +1,5 @@
 var fs = require('fs')
+var mockFs = require('mock-fs')
 var codecov = require('../lib/codecov')
 
 var isWindows =
@@ -29,12 +30,76 @@ describe('Codecov', function() {
     expect(codecov.upload({ options: { dump: true } }).query.token).to.eql(
       'ABC123'
     )
+    delete process.env.CODECOV_TOKEN
   })
 
   it('can get a token passed in cli', function() {
     expect(
       codecov.upload({ options: { dump: true, token: 'qwerty' } }).query.token
     ).to.eql('qwerty')
+  })
+
+  it('can read a codecov.yml file', function() {
+    mockFs({
+      'codecov.yml': 'codecov:\n  token: fake-token',
+    })
+    expect(codecov.upload({ options: { dump: true } }).query.token).to.eql(
+      'fake-token'
+    )
+    mockFs.restore()
+  })
+  it('can read a .codecov.yml file', function() {
+    mockFs({
+      '.codecov.yml': 'codecov:\n  token: fake-token-dotfile',
+    })
+    expect(codecov.upload({ options: { dump: true } }).query.token).to.eql(
+      'fake-token-dotfile'
+    )
+    mockFs.restore()
+  })
+  it('should have no token if yaml file does not supplied', function() {
+    mockFs({
+      '.codecov.yml': 'codecov:\n  noconfig: true',
+    })
+    expect(codecov.upload({ options: { dump: true } }).query.token).to.eql(
+      undefined
+    )
+    mockFs.restore()
+  })
+
+  it('token precedence should be respected', function() {
+    // options.token || .codecov.yml/codecov.yml file || codecov_token || CODECOV_TOKEN
+    mockFs({
+      '.codecov.yml': 'codecov:\n  token: fake-token-dotfile',
+    })
+    var upload = codecov.upload({ options: { dump: true, token: 'qwerty' } })
+    expect(upload.query.token).to.eql('qwerty')
+    mockFs.restore()
+
+    process.env.codecov_token = 'abc123'
+    upload = codecov.upload({ options: { dump: true, token: 'qwerty2' } })
+    expect(upload.query.token).to.eql('qwerty2')
+    delete process.env.codecov_token
+
+    process.env.CODECOV_TOKEN = 'ABC123'
+    upload = codecov.upload({ options: { dump: true, token: 'qwerty3' } })
+    expect(upload.query.token).to.eql('qwerty3')
+    delete process.env.CODECOV_TOKEN
+
+    mockFs({
+      '.codecov.yml': 'codecov:\n  token: fake-token-dotfile',
+    })
+    process.env.codecov_token = 'abc123'
+    upload = codecov.upload({ options: { dump: true } })
+    expect(upload.query.token).to.eql('fake-token-dotfile')
+    mockFs.restore()
+
+    process.env.codecov_token = 'abc123'
+    process.env.CODECOV_TOKEN = 'ABC123'
+    upload = codecov.upload({ options: { dump: true } })
+    expect(upload.query.token).to.eql('abc123')
+    delete process.env.codecov_token
+    delete process.env.CODECOV_TOKEN
   })
 
   it('can auto detect reports', function() {
@@ -125,6 +190,7 @@ describe('Codecov', function() {
     var res = codecov.upload({ options: { dump: true, env: 'HELLO,VAR1' } })
     expect(res.body).to.contain('HELLO=world\n')
     expect(res.body).to.contain('VAR1=\n')
+    delete process.env.HELLO
   })
 
   it('can include env in env', function() {
@@ -134,6 +200,8 @@ describe('Codecov', function() {
     expect(res.body).to.contain('HELLO=world\n')
     expect(res.body).to.contain('VAR1=\n')
     expect(res.body).to.contain('VAR2=\n')
+    delete process.env.HELLO
+    delete process.env.CODECOV_ENV
   })
 
   it('can have custom args for gcov', function() {
@@ -163,33 +231,40 @@ describe('Codecov', function() {
   })
 
   it('Should use codecov.yml via env variable', function() {
+    var CWD = process.cwd()
     expect(
       codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
-    ).to.eql('codecov.yml')
+    ).to.eql(CWD + '/codecov.yml')
 
-    fs.writeFileSync('foo.yml', '')
+    mockFs({
+      'foo.yml': '',
+    })
     process.env.codecov_yml = 'foo.yml'
     expect(
       codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
-    ).to.eql('foo.yml')
-    fs.unlinkSync('foo.yml')
+    ).to.eql(CWD + '/foo.yml')
+    mockFs.restore()
     delete process.env.codecov_yml
 
-    fs.writeFileSync('FOO.yml', '')
+    mockFs({
+      'FOO.yml': '',
+    })
     process.env.CODECOV_YML = 'FOO.yml'
     expect(
       codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
-    ).to.eql('FOO.yml')
-    fs.unlinkSync('FOO.yml')
+    ).to.eql(CWD + '/FOO.yml')
+    mockFs.restore()
     delete process.env.CODECOV_YML
   })
 
   it('can get config from cli args', function() {
-    fs.writeFileSync('foo.yml', '')
+    mockFs({
+      'foo.yml': '',
+    })
     var res = codecov.upload({
       options: { dump: true, yml: 'foo.yml', disable: 'detect' },
     })
-    expect(res.query.yaml).to.eql('foo.yml')
-    fs.unlinkSync('foo.yml')
+    expect(res.query.yaml).to.eql(process.cwd() + '/foo.yml')
+    mockFs.restore()
   })
 })
