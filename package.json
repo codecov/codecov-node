@@ -29,7 +29,7 @@
     "argv": "^0.0.2",
     "ignore-walk": "^3.0.1",
     "js-yaml": "^3.12.0",
-    "request": "^2.87.0",
+    "teeny-request": "^3.7.0",
     "urlgrey": "^0.4.4"
   },
   "devDependencies": {
