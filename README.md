@@ -98,3 +98,4 @@ nyc report --reporter=text-lcov > coverage.lcov
 - v3.0.2 Security fixes
 - v3.0.3 Support non-git/hg root dirs
 - v3.0.4 Security fixes
+- v3.1.0 Custom yaml file. Allow codecov token from yml file.

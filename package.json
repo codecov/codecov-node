@@ -1,10 +1,11 @@
 {
   "name": "codecov",
-  "version": "3.0.4",
+  "version": "3.1.0",
   "description": "Uploading report to Codecov: https://codecov.io",
   "main": "index.js",
   "scripts": {
     "precommit": "lint-staged",
+    "pretest": "eslint .",
     "test": "nyc mocha -R spec"
   },
   "repository": {
@@ -27,14 +28,18 @@
   "dependencies": {
     "argv": "^0.0.2",
     "ignore-walk": "^3.0.1",
-    "request": "^2.87.0",
+    "js-yaml": "^3.12.0",
+    "teeny-request": "^3.7.0",
     "urlgrey": "^0.4.4"
   },
   "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
     "expect.js": "^0.3.1",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
     "mocha": "^5.2.0",
+    "mock-fs": "^4.6.0",
     "nyc": "^12.0.2",
     "prettier": "^1.13.7"
   },
