@@ -37,7 +37,7 @@ export CODECOV_TOKEN=":uuid-repo-token"
 # or
 ./node_modules/.bin/codecov --token=:token
 # or
-nyc report --reporter=text-lcov | ./node_modules/.bin/codecov --pipe
+./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/codecov --pipe
 ```
 
 #### [Istanbul](https://github.com/gotwarlost/istanbul)
