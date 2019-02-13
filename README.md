@@ -10,11 +10,15 @@
 [Codecov.io](https://codecov.io/) support for node.js.
 
 ## Installation:
+
 Add the latest version of `codecov` to your package.json:
+
 ```
 npm install codecov --save-dev
 ```
+
 or
+
 ```
 yarn add codecov --dev
 ```
@@ -28,6 +32,7 @@ Once your app is instrumented for coverage, and building, simply call `./node_mo
 This library currently supports the following CI companies: [Travis CI](https://travis-ci.org/), [Travis](https://travis-ci.com/), [Appveyor](https://appveyor.com/), [CircleCI](https://circleci.com/), [Codeship](https://codeship.io/), [Drone](https://drone.io/), [Jenkins](http://jenkins-ci.org/), [Shippable](https://shippable.com/), [Semaphore](https://semaphoreapp.com/), [Wercker](https://wercker.com/), [Snap CI](https://snap-ci.com/), [Buildkite](https://buildkite.com/).
 
 #### Upload repo tokens
+
 > Repo tokens are **not** required for public repos tested on Travis-Org, CircleCI or AppVeyor.
 
 Repo tokens are necessary to distinguish your repository from others. You can find your repo token on your repository page at Codecov. Set this unique uuid to `CODECOV_TOKEN` in your environment variables.
@@ -63,16 +68,12 @@ istanbul cover test.js
 
 [travis-image]: https://travis-ci.org/codecov/codecov-node.svg?branch=master
 [travis-url]: https://travis-ci.org/codecov/codecov-node
-
 [appveyor-image]: https://ci.appveyor.com/api/projects/status/ea1suiv0tprnq61l?svg=true
 [appveyor-url]: https://ci.appveyor.com/project/eddiemoore/codecov-node/branch/master
-
 [npm-url]: https://npmjs.org/package/codecov
 [npm-image]: https://img.shields.io/npm/v/codecov.svg
-
 [depstat-url]: https://david-dm.org/codecov/codecov-node
 [depstat-image]: https://img.shields.io/david/codecov/codecov-node/master.svg
-
 [devdepstat-url]: https://david-dm.org/codecov/codecov-node#info=devDependencies
 [devdepstat-image]: https://img.shields.io/david/dev/codecov/codecov-node/master.svg
 
@@ -85,6 +86,7 @@ nyc report --reporter=text-lcov > coverage.lcov
 ```
 
 ## Change Log
+
 - v2.0.0 No longer supports node v0.10 because of the execSync.
 - v2.0.1 Publish as latest instead of next.
 - v2.0.2 Display correct version number in console.
@@ -97,3 +99,4 @@ nyc report --reporter=text-lcov > coverage.lcov
 - v3.0.3 Support non-git/hg root dirs
 - v3.0.4 Security fixes
 - v3.1.0 Custom yaml file. Allow codecov token from yml file.
+- v3.2.0 Added azure pipelines
