@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "precommit": "lint-staged",
+    "lint": "eslint .",
+    "pretest": "npm run lint",
     "test": "jest"
   },
   "repository": {
