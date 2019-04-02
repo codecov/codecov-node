@@ -224,8 +224,8 @@ describe('Codecov', function() {
     var childProcess = exec(
       'cat test/example.coverage.txt | bin/codecov -l --dump --disable=gcov',
       function(err, stdout) {
-        expect(stdout.toString()).to.contain('path=piped')
-        expect(stdout.toString()).to.contain(
+        expect(stdout.toString()).toContain('path=piped')
+        expect(stdout.toString()).toContain(
           'this file is intentionally left blank'
         )
         childProcess.kill()
