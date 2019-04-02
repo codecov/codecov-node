@@ -225,6 +225,21 @@ describe('Codecov', function() {
     }
   })
 
+  it('can read piped reports', function(done) {
+    var exec = require('child_process').exec
+    var childProcess = exec(
+      'cat test/example.coverage.txt | bin/codecov -l --dump --disable=gcov',
+      function(err, stdout) {
+        expect(stdout.toString()).to.contain('path=piped')
+        expect(stdout.toString()).to.contain(
+          'this file is intentionally left blank'
+        )
+        childProcess.kill()
+        done()
+      }
+    )
+  })
+
   it('should have the correct version number', function() {
     var version = require('../package.json').version
     expect(codecov.version).to.eql('v' + version)
