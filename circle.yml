@@ -4,4 +4,4 @@ machine:
 
 test:
   post:
-    - ./bin/codecov -f .nyc_output/*.json
+    - ./bin/codecov -f coverage/*.json

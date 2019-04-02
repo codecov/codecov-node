@@ -3,7 +3,7 @@ var cirrus = require('../../lib/services/cirrus')
 describe('Cirrus CI Provider', function() {
   it('can detect cirrus', function() {
     process.env.CIRRUS_CI = 'true'
-    expect(cirrus.detect()).to.be(true)
+    expect(cirrus.detect()).toBe(true)
   })
 
   it('can get cirrus env info', function() {
@@ -14,7 +14,7 @@ describe('Cirrus CI Provider', function() {
     process.env.CIRRUS_TASK_ID = '1234.1'
     process.env.CIRRUS_PR = 'blah'
     process.env.CIRRUS_REPO_FULL_NAME = 'owner/repo'
-    expect(cirrus.configuration()).to.eql({
+    expect(cirrus.configuration()).toEqual({
       service: 'cirrusci',
       commit: '5678',
       build: '1234.1',

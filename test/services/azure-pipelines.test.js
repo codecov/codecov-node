@@ -3,7 +3,7 @@ var azurePipelines = require('../../lib/services/azurePipelines')
 describe('Azure Pipelines CI Provider', function() {
   it('can detect azure pipelines', function() {
     process.env.TF_BUILD = '1'
-    expect(azurePipelines.detect()).to.be(true)
+    expect(azurePipelines.detect()).toBe(true)
   })
 
   it('can get azure pipelines env info', function() {
@@ -17,7 +17,7 @@ describe('Azure Pipelines CI Provider', function() {
     process.env.BUILD_REPOSITORY_ID = 'owner/repo'
     process.env.SYSTEM_PULLREQUEST_PULLREQUESTNUMBER = '1234'
 
-    expect(azurePipelines.configuration()).to.eql({
+    expect(azurePipelines.configuration()).toEqual({
       service: 'azure_pipelines',
       build: '1',
       build_url: 'https://dev.azure.com/codecov/repo/_build/results?buildId=1',

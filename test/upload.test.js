@@ -9,7 +9,7 @@ describe('Codecov', function() {
     } catch (e) {}
   })
 
-  after(function() {
+  afterAll(function() {
     try {
       fs.unlinkSync('report.tmp')
     } catch (e) {}
@@ -26,45 +26,9 @@ describe('Codecov', function() {
       },
       'testing node-' + codecov.version,
       function(body) {
-        expect(body).to.contain(
+        expect(body).toContain(
           'https://codecov.io/github/codecov/ci-repo/commit/c739768fcac68144a3a6d82305b9c4106934d31a'
         )
-        done()
-      },
-      function(errCode, errMsg) {
-        if (offlineErrors.indexOf(errCode) !== -1) {
-          self.skip() // offline - we can not test upload
-          return
-        }
-        throw new Error(errMsg)
-      }
-    )
-  })
-
-  it('can remove files after uploading', function(done) {
-    fs.writeFileSync('report.tmp', '<content>')
-    fs.exists('report.tmp', function(exists) {
-      expect(exists).to.be.true
-    })
-
-    var self = this
-    codecov.sendToCodecovV2(
-      'https://codecov.io',
-      {
-        token: 'f881216b-b5c0-4eb1-8f21-b51887d1d506',
-        commit: 'c739768fcac68144a3a6d82305b9c4106934d31a',
-        file: 'report.tmp',
-        clear: true,
-        branch: 'master',
-      },
-      'testing node-' + codecov.version,
-      function(body) {
-        expect(body).to.contain(
-          'https://codecov.io/github/codecov/ci-repo/commit/c739768fcac68144a3a6d82305b9c4106934d31a'
-        )
-        fs.exists('report.tmp', function(exists) {
-          expect(exists).to.be.false
-        })
         done()
       },
       function(errCode, errMsg) {
@@ -79,7 +43,7 @@ describe('Codecov', function() {
 
   it('can get upload to v3', function(done) {
     var self = this
-    this.timeout(3000) // give this test extra time to run (default is 2000ms)
+    jest.setTimeout(10000) // give this test extra time to run (default is 2000ms)
     codecov.sendToCodecovV3(
       'https://codecov.io',
       {
@@ -89,7 +53,7 @@ describe('Codecov', function() {
       },
       'testing node-' + codecov.version,
       function(body) {
-        expect(body).to.contain(
+        expect(body).toContain(
           'https://codecov.io/github/codecov/ci-repo/commit/c739768fcac68144a3a6d82305b9c4106934d31a'
         )
         done()
@@ -116,7 +80,7 @@ describe('Codecov', function() {
         },
         'testing node-' + codecov.version,
         function(body) {
-          expect(body).to.contain(
+          expect(body).toContain(
             'https://codecov.io/github/codecov/ci-repo/commit/c739768fcac68144a3a6d82305b9c4106934d31a'
           )
           done()
@@ -128,6 +92,6 @@ describe('Codecov', function() {
           throw new Error(errMsg)
         }
       )
-    ).to.not.throwException()
+    ).not.toThrow()
   })
 })
