@@ -21,7 +21,21 @@ var args = argv.option([
   {name: 'url', short: 'u', type: 'string', description: "Your Codecov endpoint"},
   {name: 'flags', short: 'F', type: 'string', description: "Codecov Flags"},
   {name: 'dump', type: 'boolean', description: "Dump collected data and do not send to Codecov"},
-  {name: 'yml', short: 'y', type: 'string', description: "Configuration file Used to specify the location of the .codecov.yml config file. Defaults to codecov.yml and .codecov.yml"}
+  {name: 'pipe', short: 'l', type: 'boolean', description: "Listen to stdin for coverage data"},
+  {name: 'yml', short: 'y', type: 'string', description: "Configuration file Used to specify the location of the .codecov.yml config file. Defaults to codecov.yml and .codecov.yml"},
 ]).run();
 
-codecov.upload(args);
+if (args.options.pipe) {
+  process.stdin.setEncoding('utf8');
+  args.options.pipe = [];
+
+  process.stdin.on('data', function(report) {
+    args.options.pipe.push(report);
+  });
+
+  process.stdin.on('end', function() {
+    codecov.upload(args);
+  });
+} else {
+  codecov.upload(args);
+}
