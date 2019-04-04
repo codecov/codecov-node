@@ -3,7 +3,7 @@ var circle = require('../../lib/services/circle')
 describe('Circle CI Provider', function() {
   it('can detect circle', function() {
     process.env.CIRCLECI = 'true'
-    expect(circle.detect()).to.be(true)
+    expect(circle.detect()).toBe(true)
   })
 
   it('can get circle env info (CircleCI 1.0)', function() {
@@ -15,7 +15,7 @@ describe('Circle CI Provider', function() {
     process.env.CIRCLE_PR_NUMBER = 'blah'
     process.env.CIRCLE_PROJECT_USERNAME = 'owner'
     process.env.CIRCLE_PROJECT_REPONAME = 'repo'
-    expect(circle.configuration()).to.eql({
+    expect(circle.configuration()).toEqual({
       service: 'circleci',
       commit: '5678',
       build: '1234.1',
@@ -40,7 +40,7 @@ describe('Circle CI Provider', function() {
     delete process.env.CIRCLE_PR_NUMBER
     delete process.env.CIRCLE_PROJECT_USERNAME
     delete process.env.CIRCLE_PROJECT_REPONAME
-    expect(circle.configuration()).to.eql({
+    expect(circle.configuration()).toEqual({
       service: 'circleci',
       commit: 'abcd',
       build: '1234.1',
@@ -58,6 +58,6 @@ describe('Circle CI Provider', function() {
     delete process.env.CIRCLE_REPOSITORY_URL
     expect(function() {
       circle.configuration()
-    }).to.throwError()
+    }).toThrow()
   })
 })

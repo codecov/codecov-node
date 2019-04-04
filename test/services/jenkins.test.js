@@ -4,7 +4,7 @@ var git = require('../../lib/git')
 describe('Jenkins CI Provider', function() {
   it('can detect jenkins', function() {
     process.env.JENKINS_URL = 'http://jenkins.jenkins.example/'
-    expect(jenkins.detect()).to.be(true)
+    expect(jenkins.detect()).toBe(true)
   })
 
   it('can get service env info', function() {
@@ -13,7 +13,7 @@ describe('Jenkins CI Provider', function() {
     process.env.GIT_COMMIT = '5678'
     process.env.GIT_BRANCH = 'master'
     process.env.WORKSPACE = '/'
-    expect(jenkins.configuration()).to.eql({
+    expect(jenkins.configuration()).toEqual({
       service: 'jenkins',
       build_url: 'http://asdf/',
       build: '1234',
@@ -31,7 +31,7 @@ describe('Jenkins CI Provider', function() {
     process.env.BUILD_URL = 'http://asdf/'
     process.env.BRANCH_NAME = 'master'
     process.env.WORKSPACE = '/'
-    expect(jenkins.configuration()).to.eql({
+    expect(jenkins.configuration()).toEqual({
       service: 'jenkins',
       build_url: 'http://asdf/',
       build: '1234',
@@ -51,7 +51,7 @@ describe('Jenkins CI Provider', function() {
     process.env.ghprbSourceBranch = 'retsam'
     process.env.ghprbPullId = '1111'
     process.env.WORKSPACE = '/'
-    expect(jenkins.configuration()).to.eql({
+    expect(jenkins.configuration()).toEqual({
       service: 'jenkins',
       build_url: 'http://asdf/',
       build: '1234',

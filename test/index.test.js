@@ -13,21 +13,21 @@ describe('Codecov', function() {
     } catch (e) {}
   })
 
-  after(function() {
+  afterAll(function() {
     try {
       fs.unlinkSync('.bowerrc')
     } catch (e) {}
   })
 
   it('can get a token passed via env variable', function() {
-    this.timeout(10000)
+    jest.setTimeout(10000)
     process.env.codecov_token = 'abc123'
-    expect(codecov.upload({ options: { dump: true } }).query.token).to.eql(
+    expect(codecov.upload({ options: { dump: true } }).query.token).toBe(
       'abc123'
     )
     delete process.env.codecov_token
     process.env.CODECOV_TOKEN = 'ABC123'
-    expect(codecov.upload({ options: { dump: true } }).query.token).to.eql(
+    expect(codecov.upload({ options: { dump: true } }).query.token).toBe(
       'ABC123'
     )
     delete process.env.CODECOV_TOKEN
@@ -36,14 +36,14 @@ describe('Codecov', function() {
   it('can get a token passed in cli', function() {
     expect(
       codecov.upload({ options: { dump: true, token: 'qwerty' } }).query.token
-    ).to.eql('qwerty')
+    ).toBe('qwerty')
   })
 
   it('can read a codecov.yml file', function() {
     mockFs({
       'codecov.yml': 'codecov:\n  token: fake-token',
     })
-    expect(codecov.upload({ options: { dump: true } }).query.token).to.eql(
+    expect(codecov.upload({ options: { dump: true } }).query.token).toBe(
       'fake-token'
     )
     mockFs.restore()
@@ -52,7 +52,7 @@ describe('Codecov', function() {
     mockFs({
       '.codecov.yml': 'codecov:\n  token: fake-token-dotfile',
     })
-    expect(codecov.upload({ options: { dump: true } }).query.token).to.eql(
+    expect(codecov.upload({ options: { dump: true } }).query.token).toBe(
       'fake-token-dotfile'
     )
     mockFs.restore()
@@ -61,7 +61,7 @@ describe('Codecov', function() {
     mockFs({
       '.codecov.yml': 'codecov:\n  noconfig: true',
     })
-    expect(codecov.upload({ options: { dump: true } }).query.token).to.eql(
+    expect(codecov.upload({ options: { dump: true } }).query.token).toBe(
       undefined
     )
     mockFs.restore()
@@ -73,17 +73,17 @@ describe('Codecov', function() {
       '.codecov.yml': 'codecov:\n  token: fake-token-dotfile',
     })
     var upload = codecov.upload({ options: { dump: true, token: 'qwerty' } })
-    expect(upload.query.token).to.eql('qwerty')
+    expect(upload.query.token).toBe('qwerty')
     mockFs.restore()
 
     process.env.codecov_token = 'abc123'
     upload = codecov.upload({ options: { dump: true, token: 'qwerty2' } })
-    expect(upload.query.token).to.eql('qwerty2')
+    expect(upload.query.token).toBe('qwerty2')
     delete process.env.codecov_token
 
     process.env.CODECOV_TOKEN = 'ABC123'
     upload = codecov.upload({ options: { dump: true, token: 'qwerty3' } })
-    expect(upload.query.token).to.eql('qwerty3')
+    expect(upload.query.token).toBe('qwerty3')
     delete process.env.CODECOV_TOKEN
 
     mockFs({
@@ -91,23 +91,21 @@ describe('Codecov', function() {
     })
     process.env.codecov_token = 'abc123'
     upload = codecov.upload({ options: { dump: true } })
-    expect(upload.query.token).to.eql('fake-token-dotfile')
+    expect(upload.query.token).toBe('fake-token-dotfile')
     mockFs.restore()
 
     process.env.codecov_token = 'abc123'
     process.env.CODECOV_TOKEN = 'ABC123'
     upload = codecov.upload({ options: { dump: true } })
-    expect(upload.query.token).to.eql('abc123')
+    expect(upload.query.token).toBe('abc123')
     delete process.env.codecov_token
     delete process.env.CODECOV_TOKEN
   })
 
   it('can auto detect reports', function() {
     var res = codecov.upload({ options: { dump: true } })
-    expect(res.files[0].split(pathSeparator).pop()).to.eql(
-      'example.coverage.txt'
-    )
-    expect(res.body).to.contain('this file is intentionally left blank')
+    expect(res.files[0].split(pathSeparator).pop()).toBe('example.coverage.txt')
+    expect(res.body).toContain('this file is intentionally left blank')
   })
 
   it('can specify report in cli', function() {
@@ -117,79 +115,75 @@ describe('Codecov', function() {
         file: 'test' + pathSeparator + 'example.coverage.txt',
       },
     })
-    expect(res.files[0].split(pathSeparator).pop()).to.eql(
-      'example.coverage.txt'
-    )
-    expect(res.body).to.contain('this file is intentionally left blank')
+    expect(res.files[0].split(pathSeparator).pop()).toBe('example.coverage.txt')
+    expect(res.body).toContain('this file is intentionally left blank')
   })
 
   it('can specify report in cli fail', function() {
     var res = codecov.upload({ options: { dump: true, file: 'notreal.txt' } })
-    expect(res.debug).to.contain('failed: notreal.txt')
+    expect(res.debug).toContain('failed: notreal.txt')
   })
 
   // it("can detect .bowerrc with directory", function(){
   //   fs.writeFileSync('.bowerrc', '{"directory": "test"}');
   //   var res = codecov.upload({options: {dump: true}});
-  //   expect(res.files).to.eql([]);
+  //   expect(res.files).toBe([]);
   // });
 
   it('can detect .bowerrc without directory', function() {
     fs.writeFileSync('.bowerrc', '{"key": "value"}')
     var res = codecov.upload({ options: { dump: true } })
-    expect(res.files[0].split(pathSeparator).pop()).to.eql(
-      'example.coverage.txt'
-    )
-    expect(res.body).to.contain('this file is intentionally left blank')
+    expect(res.files[0].split(pathSeparator).pop()).toBe('example.coverage.txt')
+    expect(res.body).toContain('this file is intentionally left blank')
   })
 
   it('can disable search', function() {
     var res = codecov.upload({ options: { dump: true, disable: 'search' } })
-    expect(res.debug).to.contain('disabled search')
-    expect(res.files).to.eql([])
+    expect(res.debug).toContain('disabled search')
+    expect(res.files).toEqual([])
   })
 
   it('can disable gcov', function() {
     var res = codecov.upload({ options: { dump: true, disable: 'gcov' } })
     console.log(res.debug)
-    expect(res.debug).to.contain('disabled gcov')
+    expect(res.debug).toContain('disabled gcov')
   })
 
   it('can disable detection', function() {
     var res = codecov.upload({ options: { dump: true, disable: 'detect' } })
-    expect(res.debug).to.contain('disabled detect')
+    expect(res.debug).toContain('disabled detect')
   })
 
   it('can get build from cli args', function() {
     var res = codecov.upload({ options: { dump: true, build: 'value' } })
-    expect(res.query.build).to.eql('value')
+    expect(res.query.build).toBe('value')
   })
 
   it('can get commit from cli args', function() {
     var res = codecov.upload({ options: { dump: true, commit: 'value' } })
-    expect(res.query.commit).to.eql('value')
+    expect(res.query.commit).toBe('value')
   })
 
   it('can get branch from cli args', function() {
     var res = codecov.upload({ options: { dump: true, branch: 'value' } })
-    expect(res.query.branch).to.eql('value')
+    expect(res.query.branch).toBe('value')
   })
 
   it('can get slug from cli args', function() {
     var res = codecov.upload({ options: { dump: true, slug: 'value' } })
-    expect(res.query.slug).to.eql('value')
+    expect(res.query.slug).toBe('value')
   })
 
   it('can get flags from cli args', function() {
     var res = codecov.upload({ options: { dump: true, flags: 'value' } })
-    expect(res.query.flags).to.eql('value')
+    expect(res.query.flags).toBe('value')
   })
 
   it('can include env in cli', function() {
     process.env.HELLO = 'world'
     var res = codecov.upload({ options: { dump: true, env: 'HELLO,VAR1' } })
-    expect(res.body).to.contain('HELLO=world\n')
-    expect(res.body).to.contain('VAR1=\n')
+    expect(res.body).toContain('HELLO=world\n')
+    expect(res.body).toContain('VAR1=\n')
     delete process.env.HELLO
   })
 
@@ -197,9 +191,9 @@ describe('Codecov', function() {
     process.env.HELLO = 'world'
     process.env.CODECOV_ENV = 'HELLO,VAR1'
     var res = codecov.upload({ options: { dump: true, env: 'VAR2' } })
-    expect(res.body).to.contain('HELLO=world\n')
-    expect(res.body).to.contain('VAR1=\n')
-    expect(res.body).to.contain('VAR2=\n')
+    expect(res.body).toContain('HELLO=world\n')
+    expect(res.body).toContain('VAR1=\n')
+    expect(res.body).toContain('VAR2=\n')
     delete process.env.HELLO
     delete process.env.CODECOV_ENV
   })
@@ -215,11 +209,11 @@ describe('Codecov', function() {
       },
     })
     if (!isWindows) {
-      expect(res.debug).to.contain(
+      expect(res.debug).toContain(
         "find folder/path -type f -name '*.gcno' -not -path 'ignore/this/folder' -exec llvm-gcov -o {} +"
       )
     } else {
-      expect(res.debug).to.contain(
+      expect(res.debug).toContain(
         'for /f "delims=" %g in (\'dir /a-d /b /s *.gcno ^| findstr /i /v ignore/this/folder\') do llvm-gcov -o %g'
       )
     }
@@ -230,8 +224,8 @@ describe('Codecov', function() {
     var childProcess = exec(
       'cat test/example.coverage.txt | bin/codecov -l --dump --disable=gcov',
       function(err, stdout) {
-        expect(stdout.toString()).to.contain('path=piped')
-        expect(stdout.toString()).to.contain(
+        expect(stdout.toString()).toContain('path=piped')
+        expect(stdout.toString()).toContain(
           'this file is intentionally left blank'
         )
         childProcess.kill()
@@ -242,14 +236,14 @@ describe('Codecov', function() {
 
   it('should have the correct version number', function() {
     var version = require('../package.json').version
-    expect(codecov.version).to.eql('v' + version)
+    expect(codecov.version).toBe('v' + version)
   })
 
   it('Should use codecov.yml via env variable', function() {
     var CWD = process.cwd()
     expect(
       codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
-    ).to.eql(CWD + '/codecov.yml')
+    ).toBe(CWD + '/codecov.yml')
 
     mockFs({
       'foo.yml': '',
@@ -257,7 +251,7 @@ describe('Codecov', function() {
     process.env.codecov_yml = 'foo.yml'
     expect(
       codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
-    ).to.eql(CWD + '/foo.yml')
+    ).toBe(CWD + '/foo.yml')
     mockFs.restore()
     delete process.env.codecov_yml
 
@@ -267,7 +261,7 @@ describe('Codecov', function() {
     process.env.CODECOV_YML = 'FOO.yml'
     expect(
       codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
-    ).to.eql(CWD + '/FOO.yml')
+    ).toBe(CWD + '/FOO.yml')
     mockFs.restore()
     delete process.env.CODECOV_YML
   })
@@ -279,7 +273,7 @@ describe('Codecov', function() {
     var res = codecov.upload({
       options: { dump: true, yml: 'foo.yml', disable: 'detect' },
     })
-    expect(res.query.yaml).to.eql(process.cwd() + '/foo.yml')
+    expect(res.query.yaml).toBe(process.cwd() + '/foo.yml')
     mockFs.restore()
   })
 })

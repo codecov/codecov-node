@@ -3,7 +3,7 @@ var semaphore = require('../../lib/services/semaphore')
 describe('Semaphore CI Provider', function() {
   it('can detect semaphore', function() {
     process.env.SEMAPHORE = 'true'
-    expect(semaphore.detect()).to.be(true)
+    expect(semaphore.detect()).toBe(true)
   })
 
   it('can get semaphore env info', function() {
@@ -12,7 +12,7 @@ describe('Semaphore CI Provider', function() {
     process.env.SEMAPHORE_CURRENT_THREAD = '1'
     process.env.BRANCH_NAME = 'master'
     process.env.SEMAPHORE_REPO_SLUG = 'owner/repo'
-    expect(semaphore.configuration()).to.eql({
+    expect(semaphore.configuration()).toEqual({
       service: 'semaphore',
       commit: '5678',
       build: '1234.1',

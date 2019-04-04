@@ -3,7 +3,7 @@ var buildkite = require('../../lib/services/buildkite')
 describe('Buildkite CI Provider', function() {
   it('can detect buildkite', function() {
     process.env.BUILDKITE = 'true'
-    expect(buildkite.detect()).to.be(true)
+    expect(buildkite.detect()).toBe(true)
   })
 
   it('can get buildkite env info', function() {
@@ -13,7 +13,7 @@ describe('Buildkite CI Provider', function() {
     process.env.BUILDKITE_BRANCH = 'branch'
     process.env.BUILDKITE_PROJECT_SLUG = 'slug'
 
-    expect(buildkite.configuration()).to.eql({
+    expect(buildkite.configuration()).toEqual({
       service: 'buildkite',
       build: '1',
       build_url: 'url',

@@ -3,7 +3,7 @@ var travis = require('../../lib/services/travis')
 describe('Travis CI Provider', function() {
   it('can detect travis', function() {
     process.env.TRAVIS = 'true'
-    expect(travis.detect()).to.be(true)
+    expect(travis.detect()).toBe(true)
   })
   it('can get travis env info get_commit_status', function() {
     process.env.TRAVIS = 'true'
@@ -14,7 +14,7 @@ describe('Travis CI Provider', function() {
     process.env.TRAVIS_PULL_REQUEST = 'blah'
     process.env.TRAVIS_BUILD_DIR = '/'
     process.env.TRAVIS_REPO_SLUG = 'owner/repo'
-    expect(travis.configuration()).to.eql({
+    expect(travis.configuration()).toEqual({
       service: 'travis',
       commit: '5678',
       build: '91011',

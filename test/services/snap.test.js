@@ -3,7 +3,7 @@ var snap = require('../../lib/services/snap')
 describe('Snap CI Provider', function() {
   it('can detect snap', function() {
     process.env.SNAP_CI = 'true'
-    expect(snap.detect()).to.be(true)
+    expect(snap.detect()).toBe(true)
   })
 
   it('can get snap env info get_commit_status', function() {
@@ -12,7 +12,7 @@ describe('Snap CI Provider', function() {
     process.env.SNAP_COMMIT = '5678'
     process.env.SNAP_BRANCH = 'master'
     process.env.SNAP_PULL_REQUEST_NUMBER = 'blah'
-    expect(snap.configuration()).to.eql({
+    expect(snap.configuration()).toEqual({
       service: 'snap',
       commit: '5678',
       build: '1234',
@@ -29,7 +29,7 @@ describe('Snap CI Provider', function() {
     process.env.SNAP_UPSTREAM_COMMIT = '5678'
     process.env.SNAP_UPSTREAM_BRANCH = 'upstream-branch'
     process.env.SNAP_PULL_REQUEST_NUMBER = 'blah'
-    expect(snap.configuration()).to.eql({
+    expect(snap.configuration()).toEqual({
       service: 'snap',
       commit: '5678',
       build: '1234',
