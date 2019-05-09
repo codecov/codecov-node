@@ -103,3 +103,4 @@ nyc report --reporter=text-lcov > coverage.lcov
 - v3.1.0 Custom yaml file. Allow codecov token from yml file.
 - v3.2.0 Added azure pipelines
 - v3.3.0 Added pipe with `--pipe`, `-l`
+- v3.4.0 Added Heroku CI support
