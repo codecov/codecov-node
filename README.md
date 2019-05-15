@@ -104,3 +104,4 @@ nyc report --reporter=text-lcov > coverage.lcov
 - v3.2.0 Added azure pipelines
 - v3.3.0 Added pipe with `--pipe`, `-l`
 - v3.4.0 Added Heroku CI support
+- v3.5.0 Added TeamCity support
