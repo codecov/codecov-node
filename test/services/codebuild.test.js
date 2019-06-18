@@ -35,6 +35,7 @@ describe('AWS CodeBuild Provider', function() {
   })
 
   it('throws if pr number cannot be detected', function() {
+    process.env.CODEBUILD_WEBHOOK_HEAD_REF = 'refs/heads/master'
     delete process.env.CODEBUILD_SOURCE_VERSION
     expect(function() {
       codebuild.configuration()
@@ -42,6 +43,8 @@ describe('AWS CodeBuild Provider', function() {
   })
 
   it('throws if slug cannot be detected', function() {
+    process.env.CODEBUILD_RESOLVED_SOURCE_VERSION =
+      '39ec2418eca4c539d765574a1c68f3bd77e8c549'
     delete process.env.CODEBUILD_SOURCE_REPO_URL
     expect(function() {
       codebuild.configuration()
