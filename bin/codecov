@@ -25,6 +25,14 @@ var args = argv.option([
   {name: 'yml', short: 'y', type: 'string', description: "Configuration file Used to specify the location of the .codecov.yml config file. Defaults to codecov.yml and .codecov.yml"},
 ]).run();
 
+var handleSuccess = function() {
+  process.exit(0);
+}
+
+var handleFailure = function () {
+  process.exit(1);
+}
+
 if (args.options.pipe) {
   process.stdin.setEncoding('utf8');
   args.options.pipe = [];
@@ -34,8 +42,8 @@ if (args.options.pipe) {
   });
 
   process.stdin.on('end', function() {
-    codecov.upload(args);
+    codecov.upload(args, handleSuccess, handleFailure);
   });
 } else {
-  codecov.upload(args);
+  codecov.upload(args, handleSuccess, handleFailure);
 }
