@@ -7,14 +7,17 @@ describe('Semaphore CI Provider', function() {
   })
 
   it('can get semaphore env info', function() {
-    process.env.SEMAPHORE_GIT_BRANCH = 'development'
-    process.env.SEMAPHORE_GIT_SHA = '5c84719708b9b649b9ef3b56af214f38cee6acde'
-    process.env.SEMAPHORE_WORKFLOW_ID = '65c9bb1c-aeb6-41f0-b8d9-6fa177241cdf'
+    process.env.SEMAPHORE_BUILD_NUMBER = '1234'
+    process.env.REVISION = '5678'
+    process.env.SEMAPHORE_CURRENT_THREAD = '1'
+    process.env.BRANCH_NAME = 'master'
+    process.env.SEMAPHORE_REPO_SLUG = 'owner/repo'
     expect(semaphore.configuration()).toEqual({
       service: 'semaphore',
-      branch: 'development',
-      build: '65c9bb1c-aeb6-41f0-b8d9-6fa177241cdf',
-      commit: '5c84719708b9b649b9ef3b56af214f38cee6acde',
+      commit: '5678',
+      build: '1234.1',
+      branch: 'master',
+      slug: 'owner/repo',
     })
   })
 })
