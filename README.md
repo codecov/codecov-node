@@ -106,3 +106,4 @@ nyc report --reporter=text-lcov > coverage.lcov
 - v3.4.0 Added Heroku CI support
 - v3.5.0 Added TeamCity support
 - v3.6.0 Added AWS CodeBuild and Semaphore2
+- v3.6.1 Fix for Semaphore
