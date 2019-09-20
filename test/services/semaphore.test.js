@@ -30,7 +30,7 @@ describe('Semaphore CI Provider', function() {
     process.env.BRANCH_NAME = 'master'
     process.env.SEMAPHORE_REPO_SLUG = 'owner/repo'
     expect(semaphore.configuration()).toEqual({
-      service: 'semaphore1x',
+      service: 'semaphore',
       commit: '5678',
       build: '1234.1',
       branch: 'master',
