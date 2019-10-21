@@ -34,7 +34,7 @@
     "argv": "^0.0.2",
     "ignore-walk": "^3.0.1",
     "js-yaml": "^3.13.1",
-    "teeny-request": "^3.11.3",
+    "teeny-request": "^5.3.0",
     "urlgrey": "^0.4.4"
   },
   "devDependencies": {
