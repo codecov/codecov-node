@@ -1,4 +1,4 @@
-var github_actions = require('../../lib/services/github_actions')
+const github_actions = require('../../lib/services/github_actions')
 
 describe('GitHub Actions CI Provider', () => {
   it('can detect GitHub Actions', () => {
