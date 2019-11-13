@@ -2,7 +2,7 @@ var github_actions = require('../../lib/services/github_actions')
 
 describe('GitHub Actions CI Provider', function() {
   it('can detect GitHub Actions', function() {
-    process.env.GITHUB_ACTIONS = true
+    process.env.GITHUB_ACTIONS = '1'
     expect(github_actions.detect()).to.be(true)
   })
 
