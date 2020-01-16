@@ -35,7 +35,8 @@
     "ignore-walk": "^3.0.1",
     "js-yaml": "^3.13.1",
     "teeny-request": "^3.11.3",
-    "urlgrey": "^0.4.4"
+    "urlgrey": "^0.4.4",
+    "validator": "^12.1.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
