@@ -108,3 +108,4 @@ nyc report --reporter=text-lcov > coverage.lcov
 - v3.6.0 Added AWS CodeBuild and Semaphore2
 - v3.6.1 Fix for Semaphore
 - v3.6.2 Command line args sanitized fix
+- v3.6.3 Fix for AWS Codebuild & package updates
