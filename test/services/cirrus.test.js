@@ -15,7 +15,7 @@ describe('Cirrus CI Provider', function() {
     process.env.CIRRUS_PR = 'blah'
     process.env.CIRRUS_REPO_FULL_NAME = 'owner/repo'
     expect(cirrus.configuration()).toEqual({
-      service: 'cirrusci',
+      service: 'cirrus-ci',
       commit: '5678',
       build: '1234.1',
       job: '1234.1',
