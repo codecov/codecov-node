@@ -12,7 +12,7 @@ describe('GitHub Actions CI Provider', function() {
     process.env.GITHUB_REF = 'refs/heads/master'
 
     expect(github_actions.configuration()).toEqual({
-      service: 'github_actions',
+      service: 'github-actions',
       commit: '743b04806ea677403aa2ff26c6bdeb85005de658',
       branch: 'master',
       slug: 'codecov/codecov-repo',
