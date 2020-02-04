@@ -276,4 +276,10 @@ describe('Codecov', function() {
     expect(res.query.yaml).toBe(process.cwd() + '/foo.yml')
     mockFs.restore()
   })
+
+  it('can sanitize inputs', function() {
+    expect(codecov.sanitizeVar('real & run unsafe & command')).toEqual(
+      'real  run unsafe  command'
+    )
+  })
 })
