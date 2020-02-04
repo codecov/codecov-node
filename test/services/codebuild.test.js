@@ -1,4 +1,8 @@
 var codebuild = require('../../lib/services/codebuild')
+var git = require('../../lib/git.js')
+
+// Set all module functions to jest.fn
+jest.mock('../../lib/git.js')
 
 describe('AWS CodeBuild Provider', function() {
   it('can detect codebuild', function() {
@@ -29,17 +33,39 @@ describe('AWS CodeBuild Provider', function() {
 
   it('throws if branch name cannot be detected', function() {
     delete process.env.CODEBUILD_WEBHOOK_HEAD_REF
+    git.branch.mockImplementation(function() {
+      throw new Error()
+    })
     expect(function() {
       codebuild.configuration()
     }).toThrow()
   })
 
-  it('throws if pr number cannot be detected', function() {
+  it('Test build triggered via AWS SDK', function() {
+    delete process.env.CODEBUILD_WEBHOOK_HEAD_REF
+    git.branch.mockReturnValue('master')
+    expect(codebuild.configuration()).toEqual({
+      service: 'codebuild',
+      build: 'my-project:e016b9d9-f2c8-4749-8373-7ca673b6d969',
+      job: 'my-project:e016b9d9-f2c8-4749-8373-7ca673b6d969',
+      commit: '39ec2418eca4c539d765574a1c68f3bd77e8c549',
+      branch: 'master',
+      pr: undefined,
+      slug: 'my-org/my-project',
+    })
+  })
+
+  it('Test build triggered via Github Webhook', function() {
     process.env.CODEBUILD_WEBHOOK_HEAD_REF = 'refs/heads/master'
-    delete process.env.CODEBUILD_SOURCE_VERSION
-    expect(function() {
-      codebuild.configuration()
-    }).toThrow()
+    expect(codebuild.configuration()).toEqual({
+      service: 'codebuild',
+      build: 'my-project:e016b9d9-f2c8-4749-8373-7ca673b6d969',
+      job: 'my-project:e016b9d9-f2c8-4749-8373-7ca673b6d969',
+      commit: '39ec2418eca4c539d765574a1c68f3bd77e8c549',
+      branch: 'master',
+      pr: '1',
+      slug: 'my-org/my-project',
+    })
   })
 
   it('throws if slug cannot be detected', function() {

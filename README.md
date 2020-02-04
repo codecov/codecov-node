@@ -29,7 +29,7 @@ This script ( `bin/codecov` ) detect your CI provider and all coverage reports a
 
 Once your app is instrumented for coverage, and building, simply call `./node_modules/.bin/codecov`.
 
-This library currently supports the following CI companies: [Travis CI](https://travis-ci.org/), [Travis](https://travis-ci.com/), [Appveyor](https://appveyor.com/), [CircleCI](https://circleci.com/), [Cirrus CI](https://cirrus-ci.org/), [Codeship](https://codeship.io/), [Drone](https://drone.io/), [Jenkins](http://jenkins-ci.org/), [Shippable](https://shippable.com/), [Semaphore](https://semaphoreapp.com/), [Wercker](https://wercker.com/), [Snap CI](https://snap-ci.com/), [Buildkite](https://buildkite.com/).
+This library currently supports the following CI companies: [Travis CI](https://travis-ci.org/), [Travis](https://travis-ci.com/), [Appveyor](https://appveyor.com/), [CircleCI](https://circleci.com/), [Cirrus CI](https://cirrus-ci.org/), [Codeship](https://codeship.io/), [Drone](https://drone.io/), [Jenkins](http://jenkins-ci.org/), [Shippable](https://shippable.com/), [Semaphore](https://semaphoreapp.com/), [Wercker](https://wercker.com/), [Snap CI](https://snap-ci.com/), [Buildkite](https://buildkite.com/), [AWS CodeBuild](https://aws.amazon.com/codebuild/).
 
 #### Upload repo tokens
 
@@ -107,3 +107,6 @@ nyc report --reporter=text-lcov > coverage.lcov
 - v3.5.0 Added TeamCity support
 - v3.6.0 Added AWS CodeBuild and Semaphore2
 - v3.6.1 Fix for Semaphore
+- v3.6.2 Command line args sanitized fix
+- v3.6.3 Fix for AWS Codebuild & package updates
+- v3.6.4 Fix Cirrus CI
