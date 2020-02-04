@@ -27,3 +27,4 @@ node_modules
 
 lib-cov/
 coverage.json
+.vs-code
