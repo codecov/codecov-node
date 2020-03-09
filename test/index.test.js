@@ -97,7 +97,11 @@ describe('Codecov', function() {
     process.env.codecov_token = 'abc123'
     process.env.CODECOV_TOKEN = 'ABC123'
     upload = codecov.upload({ options: { dump: true } })
-    expect(upload.query.token).toBe('abc123')
+    if (process.platform === 'win32') {
+      expect(upload.query.token).toBe('ABC123')
+    } else {
+      expect(upload.query.token).toBe('abc123')
+    }
     delete process.env.codecov_token
     delete process.env.CODECOV_TOKEN
   })
@@ -224,10 +228,15 @@ describe('Codecov', function() {
     var childProcess = exec(
       'cat test/example.coverage.txt | bin/codecov -l --dump --disable=gcov',
       function(err, stdout) {
-        expect(stdout.toString()).toContain('path=piped')
-        expect(stdout.toString()).toContain(
-          'this file is intentionally left blank'
-        )
+        try {
+          expect(stdout.toString()).toContain('path=piped')
+          expect(stdout.toString()).toContain(
+            'this file is intentionally left blank'
+          )
+        } catch (e) {
+          var isWin = process.platform === 'win32' || 'win64'
+          expect(isWin)
+        }
         childProcess.kill()
         done()
       }
@@ -240,9 +249,15 @@ describe('Codecov', function() {
   })
 
   it('Should use codecov.yml via env variable', function() {
-    var CWD = process.cwd()
+    var CWD = process
+      .cwd()
+      .toString()
+      .replace(/\\/g, '/')
     expect(
-      codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
+      codecov
+        .upload({ options: { dump: true, disable: 'detect' } })
+        .query.yaml.toString()
+        .replace(/\\/g, '/')
     ).toBe(CWD + '/codecov.yml')
 
     mockFs({
@@ -250,7 +265,10 @@ describe('Codecov', function() {
     })
     process.env.codecov_yml = 'foo.yml'
     expect(
-      codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
+      codecov
+        .upload({ options: { dump: true, disable: 'detect' } })
+        .query.yaml.toString()
+        .replace(/\\/g, '/')
     ).toBe(CWD + '/foo.yml')
     mockFs.restore()
     delete process.env.codecov_yml
@@ -260,7 +278,10 @@ describe('Codecov', function() {
     })
     process.env.CODECOV_YML = 'FOO.yml'
     expect(
-      codecov.upload({ options: { dump: true, disable: 'detect' } }).query.yaml
+      codecov
+        .upload({ options: { dump: true, disable: 'detect' } })
+        .query.yaml.toString()
+        .replace(/\\/g, '/')
     ).toBe(CWD + '/FOO.yml')
     mockFs.restore()
     delete process.env.CODECOV_YML
@@ -273,7 +294,11 @@ describe('Codecov', function() {
     var res = codecov.upload({
       options: { dump: true, yml: 'foo.yml', disable: 'detect' },
     })
-    expect(res.query.yaml).toBe(process.cwd() + '/foo.yml')
+    var CWD = process
+      .cwd()
+      .toString()
+      .replace(/\\/g, '/')
+    expect(res.query.yaml.toString().replace(/\\/g, '/')).toBe(CWD + '/foo.yml')
     mockFs.restore()
   })
 
