@@ -55,7 +55,7 @@ describe('AWS CodeBuild Provider', function() {
     })
   })
 
-  it('Test build triggered via Github Webhook', function() {
+  it('Test PR build triggered via Github Webhook', function() {
     process.env.CODEBUILD_WEBHOOK_HEAD_REF = 'refs/heads/master'
     expect(codebuild.configuration()).toEqual({
       service: 'codebuild',
@@ -64,6 +64,21 @@ describe('AWS CodeBuild Provider', function() {
       commit: '39ec2418eca4c539d765574a1c68f3bd77e8c549',
       branch: 'master',
       pr: '1',
+      slug: 'my-org/my-project',
+    })
+  })
+
+  it('Test non-PR build triggered via Github Webhook', function() {
+    process.env.CODEBUILD_WEBHOOK_HEAD_REF = 'refs/heads/master'
+    process.env.CODEBUILD_SOURCE_VERSION =
+      '39ec2418eca4c539d765574a1c68f3bd77e8c549'
+    expect(codebuild.configuration()).toEqual({
+      service: 'codebuild',
+      build: 'my-project:e016b9d9-f2c8-4749-8373-7ca673b6d969',
+      job: 'my-project:e016b9d9-f2c8-4749-8373-7ca673b6d969',
+      commit: '39ec2418eca4c539d765574a1c68f3bd77e8c549',
+      branch: 'master',
+      pr: undefined,
       slug: 'my-org/my-project',
     })
   })
