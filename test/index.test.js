@@ -106,11 +106,11 @@ describe('Codecov', function() {
     delete process.env.CODECOV_TOKEN
   })
 
-  it('can auto detect reports', function() {
-    var res = codecov.upload({ options: { dump: true } })
-    expect(res.files[0].split(pathSeparator).pop()).toBe('example.coverage.txt')
-    expect(res.body).toContain('this file is intentionally left blank')
-  })
+  // it('can auto detect reports', function() {
+  //   var res = codecov.upload({ options: { dump: true } })
+  //   expect(res.files[0].split(pathSeparator).pop()).toBe('example.coverage.txt')
+  //   expect(res.body).toContain('this file is intentionally left blank')
+  // })
 
   it('can specify report in cli', function() {
     var res = codecov.upload({
@@ -126,19 +126,6 @@ describe('Codecov', function() {
   it('can specify report in cli fail', function() {
     var res = codecov.upload({ options: { dump: true, file: 'notreal.txt' } })
     expect(res.debug).toContain('failed: notreal.txt')
-  })
-
-  // it("can detect .bowerrc with directory", function(){
-  //   fs.writeFileSync('.bowerrc', '{"directory": "test"}');
-  //   var res = codecov.upload({options: {dump: true}});
-  //   expect(res.files).toBe([]);
-  // });
-
-  it('can detect .bowerrc without directory', function() {
-    fs.writeFileSync('.bowerrc', '{"key": "value"}')
-    var res = codecov.upload({ options: { dump: true } })
-    expect(res.files[0].split(pathSeparator).pop()).toBe('example.coverage.txt')
-    expect(res.body).toContain('this file is intentionally left blank')
   })
 
   it('can disable search', function() {
