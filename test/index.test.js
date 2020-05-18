@@ -128,19 +128,6 @@ describe('Codecov', function() {
     expect(res.debug).toContain('failed: notreal.txt')
   })
 
-  // it("can detect .bowerrc with directory", function(){
-  //   fs.writeFileSync('.bowerrc', '{"directory": "test"}');
-  //   var res = codecov.upload({options: {dump: true}});
-  //   expect(res.files).toBe([]);
-  // });
-
-  it('can detect .bowerrc without directory', function() {
-    fs.writeFileSync('.bowerrc', '{"key": "value"}')
-    var res = codecov.upload({ options: { dump: true } })
-    expect(res.files[0].split(pathSeparator).pop()).toBe('example.coverage.txt')
-    expect(res.body).toContain('this file is intentionally left blank')
-  })
-
   it('can disable search', function() {
     var res = codecov.upload({ options: { dump: true, disable: 'search' } })
     expect(res.debug).toContain('disabled search')
