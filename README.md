@@ -87,6 +87,11 @@ nyc report --reporter=text-lcov > coverage.lcov
 ./node_modules/.bin/codecov
 ```
 
+## Troubleshooting
+
+If you're seeing an **HTTP 400 error when uploading reports to S3**, make sure you've updated to at least version 3.7.0. 
+
+
 ## Change Log
 
 - v2.0.0 No longer supports node v0.10 because of the execSync.
