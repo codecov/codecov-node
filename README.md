@@ -75,9 +75,9 @@ istanbul cover test.js
 [npm-url]: https://npmjs.org/package/codecov
 [npm-image]: https://img.shields.io/npm/v/codecov.svg
 [depstat-url]: https://david-dm.org/codecov/codecov-node
-[depstat-image]: https://img.shields.io/david/codecov/codecov-node/master.svg
-[devdepstat-url]: https://david-dm.org/codecov/codecov-node#info=devDependencies
-[devdepstat-image]: https://img.shields.io/david/dev/codecov/codecov-node/master.svg
+[depstat-image]: https://david-dm.org/codecov/codecov-node/status.svg
+[devdepstat-url]: https://david-dm.org/codecov/codecov-node?type=dev
+[devdepstat-image]: https://david-dm.org/codecov/codecov-node/dev-status.svg
 
 **With NYC**
 
