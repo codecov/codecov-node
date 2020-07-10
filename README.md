@@ -111,3 +111,5 @@ nyc report --reporter=text-lcov > coverage.lcov
 - v3.6.3 Fix for AWS Codebuild & package updates
 - v3.6.4 Fix Cirrus CI
 - v3.7.0 Remove the X-Amz-Acl: public-read header
+
+.
