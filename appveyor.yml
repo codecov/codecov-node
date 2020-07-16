@@ -19,7 +19,7 @@ install:
   - npm install
 
 test_script:
-#  - cmd: SET PATH=C:\MinGW\bin;%PATH%
+  - cmd: SET PATH=C:\MinGW\bin;%PATH%
   - npm run test
 
 after_test:
