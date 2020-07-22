@@ -116,5 +116,5 @@ If you're seeing an **HTTP 400 error when uploading reports to S3**, make sure y
 - v3.6.4 Fix Cirrus CI
 - v3.7.0 Remove the X-Amz-Acl: public-read header
 - v3.7.1 Move to execFileSync and security fixes
-
-.
+- v3.7.2 Fix issue with network and file finding
+  .
