@@ -89,8 +89,7 @@ nyc report --reporter=text-lcov > coverage.lcov
 
 ## Troubleshooting
 
-If you're seeing an **HTTP 400 error when uploading reports to S3**, make sure you've updated to at least version 3.7.0. 
-
+If you're seeing an **HTTP 400 error when uploading reports to S3**, make sure you've updated to at least version 3.7.0.
 
 ## Change Log
 
@@ -116,5 +115,6 @@ If you're seeing an **HTTP 400 error when uploading reports to S3**, make sure y
 - v3.6.3 Fix for AWS Codebuild & package updates
 - v3.6.4 Fix Cirrus CI
 - v3.7.0 Remove the X-Amz-Acl: public-read header
+- v3.7.1 Move to execFileSync and security fixes
 
 .
