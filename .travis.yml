@@ -13,3 +13,4 @@ node_js:
 
 after_success:
   - ./bin/codecov -e TRAVIS_NODE_VERSION -f coverage/*.json
+  - ./bin/codecov -e TRAVIS_NODE_VERSION
