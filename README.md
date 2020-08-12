@@ -1,9 +1,9 @@
 # Codecov NodeJS Uploader
 
+[![codecov.io](https://codecov.io/github/codecov/codecov-node/coverage.svg?branch=master)](https://codecov.io/github/codecov/codecov-node?branch=master)
 [![NPM version][npm-image]][npm-url]
 [![Build Status][github-actions-image]][github-actions-url]
 [![Build Status][travis-image]][travis-url]
-[![codecov.io](https://codecov.io/github/codecov/codecov-node/coverage.svg?branch=master)](https://codecov.io/github/codecov/codecov-node?branch=master)
 [![Dependency Status][depstat-image]][depstat-url]
 [![Dev Dependency Status][devdepstat-image]][devdepstat-url]
 
