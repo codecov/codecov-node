@@ -1,9 +1,9 @@
 # Codecov NodeJS Uploader
 
-[![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Build Status][appveyor-image]][appveyor-url]
 [![codecov.io](https://codecov.io/github/codecov/codecov-node/coverage.svg?branch=master)](https://codecov.io/github/codecov/codecov-node?branch=master)
+[![NPM version][npm-image]][npm-url]
+[![Build Status][github-actions-image]][github-actions-url]
+[![Build Status][travis-image]][travis-url]
 [![Dependency Status][depstat-image]][depstat-url]
 [![Dev Dependency Status][devdepstat-image]][devdepstat-url]
 
@@ -68,10 +68,11 @@ istanbul cover test.js
 ./node_modules/.bin/codecov
 ```
 
+[appveyor-url]: https://ci.appveyor.com/project/eddiemoore/codecov-node-s38o6/branch/master
+[github-actions-image]: https://github.com/codecov/codecov-node/workflows/Node%20CI/badge.svg
+[github-actions-url]: https://github.com/codecov/codecov-node/actions?query=workflow%3A%22Node+CI%22
 [travis-image]: https://travis-ci.org/codecov/codecov-node.svg?branch=master
 [travis-url]: https://travis-ci.org/codecov/codecov-node
-[appveyor-image]: https://ci.appveyor.com/api/projects/status/ea1suiv0tprnq61l?svg=true
-[appveyor-url]: https://ci.appveyor.com/project/eddiemoore/codecov-node/branch/master
 [npm-url]: https://npmjs.org/package/codecov
 [npm-image]: https://img.shields.io/npm/v/codecov.svg
 [depstat-url]: https://david-dm.org/codecov/codecov-node
