@@ -40,7 +40,7 @@
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^6.11.0",
-    "husky": "4.2.1",
+    "husky": "4.2.5",
     "jest": "^24.8.0",
     "lint-staged": "10.2.11",
     "mock-fs": "4.10.4",
