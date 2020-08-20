@@ -91,31 +91,3 @@ nyc report --reporter=text-lcov > coverage.lcov
 ## Troubleshooting
 
 If you're seeing an **HTTP 400 error when uploading reports to S3**, make sure you've updated to at least version 3.7.0.
-
-## Change Log
-
-- v2.0.0 No longer supports node v0.10 because of the execSync.
-- v2.0.1 Publish as latest instead of next.
-- v2.0.2 Display correct version number in console.
-- v2.1.0 Flags supported http://docs.codecov.io/docs/flags
-- v2.2.0 Support for Jenkins Blue Ocean. Clean reports after upload. Fix for Gitlab.
-- v2.3.0 Added support for Windows. Updated dependencies.
-- v3.0.0 No longer supports node v0.12 because of new version of request
-- v3.0.1 Security fixes
-- v3.0.2 Security fixes
-- v3.0.3 Support non-git/hg root dirs
-- v3.0.4 Security fixes
-- v3.1.0 Custom yaml file. Allow codecov token from yml file.
-- v3.2.0 Added azure pipelines
-- v3.3.0 Added pipe with `--pipe`, `-l`
-- v3.4.0 Added Heroku CI support
-- v3.5.0 Added TeamCity support
-- v3.6.0 Added AWS CodeBuild and Semaphore2
-- v3.6.1 Fix for Semaphore
-- v3.6.2 Command line args sanitized fix
-- v3.6.3 Fix for AWS Codebuild & package updates
-- v3.6.4 Fix Cirrus CI
-- v3.7.0 Remove the X-Amz-Acl: public-read header
-- v3.7.1 Move to execFileSync and security fixes
-- v3.7.2 Fix issue with network and file finding
-  .
