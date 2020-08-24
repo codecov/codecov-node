@@ -44,7 +44,7 @@
     "jest": "^26.4.1",
     "lint-staged": "10.2.11",
     "mock-fs": "4.13.0",
-    "prettier": "2.0.5"
+    "prettier": "2.1.0"
   },
   "husky": {
     "hooks": {
