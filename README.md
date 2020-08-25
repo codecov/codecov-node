@@ -6,6 +6,7 @@
 [![Build Status][travis-image]][travis-url]
 [![Dependency Status][depstat-image]][depstat-url]
 [![Dev Dependency Status][devdepstat-image]][devdepstat-url]
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcodecov%2Fcodecov-node.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcodecov%2Fcodecov-node?ref=badge_shield)
 
 [Codecov.io](https://codecov.io/) support for node.js.
 
@@ -91,3 +92,7 @@ nyc report --reporter=text-lcov > coverage.lcov
 ## Troubleshooting
 
 If you're seeing an **HTTP 400 error when uploading reports to S3**, make sure you've updated to at least version 3.7.0.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcodecov%2Fcodecov-node.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcodecov%2Fcodecov-node?ref=badge_large)
