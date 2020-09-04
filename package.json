@@ -1,10 +1,12 @@
 {
   "name": "codecov",
-  "version": "2.0.2",
+  "version": "3.7.2",
   "description": "Uploading report to Codecov: https://codecov.io",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec"
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -20,7 +22,7 @@
     "codecov": "./bin/codecov"
   },
   "engines": {
-    "node": ">=0.12"
+    "node": ">=4.0"
   },
   "author": "Codecov <hello@codecov.io>",
   "license": "MIT",
@@ -29,14 +31,31 @@
   },
   "homepage": "https://github.com/codecov/codecov-node",
   "dependencies": {
-    "request": "2.79.0",
-    "urlgrey": "0.4.4",
-    "argv": "0.0.2"
+    "argv": "0.0.2",
+    "ignore-walk": "3.0.3",
+    "js-yaml": "3.14.0",
+    "teeny-request": "7.0.0",
+    "urlgrey": "0.4.4"
   },
   "devDependencies": {
-    "expect.js": "^0.3.1",
-    "istanbul": "^0.4.5",
-    "jshint": "^2.9.3",
-    "mocha": "^3.0.2"
+    "eslint": "^7.7.0",
+    "eslint-config-prettier": "^6.11.0",
+    "husky": "4.2.5",
+    "jest": "^26.4.1",
+    "lint-staged": "10.2.13",
+    "mock-fs": "4.13.0",
+    "prettier": "2.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && lint-staged",
+      "pre-push": "npm test"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
