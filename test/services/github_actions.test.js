@@ -7,6 +7,7 @@ describe('GitHub Actions CI Provider', function() {
   })
 
   it('can get GitHub Actions env info on push event', function() {
+    delete process.env.GITHUB_HEAD_REF
     process.env.GITHUB_REF = 'refs/heads/master'
     process.env.GITHUB_REPOSITORY = 'codecov/codecov-repo'
     process.env.GITHUB_RUN_ID = '257701960'
