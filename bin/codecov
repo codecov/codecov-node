@@ -6,7 +6,7 @@ var codecov = require('../lib/codecov');
 var args = argv.option([
   {name: 'token', short: 't', type: 'string', description: "Private repository token. Not required for public repos on Travis, CircleCI and AppVeyor"},
   {name: 'file', short: 'f', type: 'path', description: "Target a specific file for uploading and disabling automatic detection of coverage files."},
-  {name: 'env', short: 'e', type: 'string', description: "Store environment variables to help distinguish CI builds. Example: http://bit.ly/1ElohCu", example: "--env=VAR1,VAR2,VAR3"},
+  {name: 'env', short: 'e', type: 'string', description: "Store environment variables to help distinguish CI builds.", example: "--env=VAR1,VAR2,VAR3"},
   {name: 'root', short: 'p', type: 'path', description: "Project root, if not current directory"},
   {name: 'gcov-root', type: 'path', description: "Project root directory when preparing gcov"},
   {name: 'gcov-glob', type: 'string', description: "Paths to ignore during gcov gathering"},
