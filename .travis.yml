@@ -11,6 +11,6 @@ node_js:
   - '10'
   - '13.6.0'
 
-after_success:
+script:
   - ./bin/codecov -e TRAVIS_NODE_VERSION -f coverage/*.json
   - ./bin/codecov -e TRAVIS_NODE_VERSION
