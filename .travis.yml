@@ -20,5 +20,6 @@ node_js:
   - '13.13.0'
 
 script:
+  - npm test
   - ./bin/codecov -e TRAVIS_NODE_VERSION -f coverage/*.json
   - ./bin/codecov -e TRAVIS_NODE_VERSION
