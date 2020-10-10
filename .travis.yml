@@ -5,7 +5,9 @@ sudo: false
 node_js:
   - 'node'
   - '14'
+  - '13'
   - '12'
+  - '11'
   - '10'
 
 after_success:
