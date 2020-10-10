@@ -9,6 +9,7 @@ node_js:
   - '12'
   - '11'
   - '10'
+  - '13.6.0'
 
 after_success:
   - ./bin/codecov -e TRAVIS_NODE_VERSION -f coverage/*.json
