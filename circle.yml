@@ -1,7 +1,0 @@
-machine:
-  node:
-    version: 14
-
-test:
-  post:
-    - ./bin/codecov -f coverage/*.json

@@ -1,0 +1,21 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.1
+
+jobs:
+  test:
+    executor:
+      name: node/default
+      tag: '14.5'
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npm run test
+      - run: ./bin/codecov -f coverage/*.json
+
+workflows:
+  test:
+    jobs:
+      - test
