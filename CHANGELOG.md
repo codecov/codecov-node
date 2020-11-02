@@ -1,10 +1,18 @@
+### 3.8.1
+
+#### Fixes
+
+- [#246](https://github.com/codecov/codecov-node/pull/246) Revert "Bump teeny-request from 6.0.1 to 7.0.0"
+
 ### 3.8.0
 
 #### Features
+
 - [#160](https://github.com/codecov/codecov-node/pull/160) Add Github Actions support
 
 #### Fixes
-- [#173](https://github.com/codecov/codecov-node/pull/173) Fix broken gcov command 
+
+- [#173](https://github.com/codecov/codecov-node/pull/173) Fix broken gcov command
 - [#195](https://github.com/codecov/codecov-node/pull/195) Update Node testing versions
 - [#200](https://github.com/codecov/codecov-node/pull/200) Remove flaky tests
 - [#204](https://github.com/codecov/codecov-node/pull/204) Create CHANGELOG and remove flaky v4 test
@@ -12,6 +20,7 @@
 - [#220](https://github.com/codecov/codecov-node/pull/220) Remove errant bitly
 
 #### Dependencies
+
 - [#189](https://github.com/codecov/codecov-node/pull/189) Bump lint-staged from 10.0.7 to 10.2.11
 - [#190](https://github.com/codecov/codecov-node/pull/190) [Security] Bump handlebars from 4.5.3 to 4.7.6
 - [#191](https://github.com/codecov/codecov-node/pull/191) Bump prettier from 1.19.1 to 2.0.5
@@ -30,7 +39,7 @@
 - [#212](https://github.com/codecov/codecov-node/pull/212) Bump eslint from 7.7.0 to 7.8.1
 - [#214](https://github.com/codecov/codecov-node/pull/214) Bump lint-staged from 10.2.13 to 10.3.0
 - [#215](https://github.com/codecov/codecov-node/pull/215) Bump husky from 4.2.5 to 4.3.0
-- [#216](https://github.com/codecov/codecov-node/pull/216) Bump node-fetch from 2.6.0 to 2.6.1 
+- [#216](https://github.com/codecov/codecov-node/pull/216) Bump node-fetch from 2.6.0 to 2.6.1
 - [#217](https://github.com/codecov/codecov-node/pull/217) Bump eslint from 7.8.1 to 7.9.0
 - [#218](https://github.com/codecov/codecov-node/pull/218) Bump prettier from 2.1.1 to 2.1.2
 - [#219](https://github.com/codecov/codecov-node/pull/219) Bump lint-staged from 10.3.0 to 10.4.0
