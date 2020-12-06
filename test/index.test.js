@@ -294,4 +294,10 @@ describe('Codecov', function() {
       'real  run unsafe  command'
     )
   })
+
+  it('gracefully sanitizes undefined', function() {
+    expect(function() {
+      codecov.sanitizeVar(undefined)
+    }).not.toThrow()
+  })
 })

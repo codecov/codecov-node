@@ -1,6 +1,6 @@
 {
   "name": "codecov",
-  "version": "3.7.2",
+  "version": "3.8.1",
   "description": "Uploading report to Codecov: https://codecov.io",
   "main": "index.js",
   "scripts": {
@@ -34,17 +34,17 @@
     "argv": "0.0.2",
     "ignore-walk": "3.0.3",
     "js-yaml": "3.14.0",
-    "teeny-request": "7.0.0",
+    "teeny-request": "7.0.1",
     "urlgrey": "0.4.4"
   },
   "devDependencies": {
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
-    "husky": "4.2.5",
+    "husky": "4.3.0",
     "jest": "^26.4.1",
-    "lint-staged": "10.2.13",
+    "lint-staged": "10.5.1",
     "mock-fs": "4.13.0",
-    "prettier": "2.1.1"
+    "prettier": "2.1.2"
   },
   "husky": {
     "hooks": {
