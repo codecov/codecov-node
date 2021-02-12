@@ -85,7 +85,7 @@ istanbul cover test.js
 
 ```
 nyc npm test
-nyc report --reporter=text-lcov > coverage.lcov
+nyc report --reporter=lcov
 ./node_modules/.bin/codecov
 ```
 
