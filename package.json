@@ -33,7 +33,7 @@
   "dependencies": {
     "argv": "0.0.2",
     "ignore-walk": "3.0.4",
-    "js-yaml": "3.14.1",
+    "js-yaml": "4.1.0",
     "teeny-request": "7.0.1",
     "urlgrey": "0.4.4"
   },
