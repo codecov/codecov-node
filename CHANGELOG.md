@@ -1,8 +1,26 @@
-## 3.8.2
-
+## 3.8.3
 ### Fixes
+- #329 fix: Test if response has two lines
 
-- # Add coverage-final.json as a possible coverage file during file lookup
+### Dependencies
+- #306 Bump eslint-config-prettier from 7.2.0 to 8.3.0
+- #305 Bump eslint from 7.21.0 to 7.25.0
+- #302 Bump mock-fs from 4.13.0 to 4.14.0
+- #308 Bump lodash from 4.17.19 to 4.17.21
+- #309 Bump ignore-walk from 3.0.3 to 3.0.4
+- #310 Bump hosted-git-info from 2.8.8 to 2.8.9
+- #325 Bump prettier from 2.2.1 to 2.3.2
+- #326 Bump actions/setup-node from 2.1.5 to 2.2.0
+- #328 Bump lint-staged from 10.5.4 to 11.0.1
+- #330 Bump eslint from 7.25.0 to 7.31.0
+- #331 Bump ws from 7.3.1 to 7.5.3
+- #332 Bump urlgrey from 0.4.4 to 1.0.0
+- #334 Bump husky from 6.0.0 to 7.0.1
+- #333 Bump teeny-request from 7.0.1 to 7.1.1
+
+## 3.8.2
+### Fixes
+- #304 Add coverage-final.json as a possible coverage file during file lookup
 
 ## 3.8.1
 
