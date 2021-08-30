@@ -1,3 +1,9 @@
+🚨🚨 Deprecation Notice 🚨🚨
+
+This uploader is being deprecated by the Codecov team. We recommend migrating to our [new uploader](https://docs.codecov.com/docs/codecov-uploader) as soon as possible to prevent any lapses in coverage. You can visit our blog post to learn more about our [deprecation plan](https://about.codecov.io/blog/codecov-uploader-deprecation-plan/)
+
+**On February 1, 2022 this uploader will be completely deprecated and will no longer be able to upload coverage to Codecov.**
+
 # Codecov NodeJS Uploader
 
 [![codecov.io](https://codecov.io/github/codecov/codecov-node/coverage.svg?branch=master)](https://codecov.io/github/codecov/codecov-node?branch=master)
