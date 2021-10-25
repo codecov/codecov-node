@@ -32,7 +32,7 @@
   "homepage": "https://github.com/codecov/codecov-node",
   "dependencies": {
     "argv": "0.0.2",
-    "ignore-walk": "3.0.4",
+    "ignore-walk": "4.0.1",
     "js-yaml": "3.14.1",
     "teeny-request": "7.1.1",
     "urlgrey": "1.0.0"
