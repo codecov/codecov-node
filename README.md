@@ -97,6 +97,14 @@ nyc report --reporter=lcov
 ./node_modules/.bin/codecov
 ```
 
+**With Jest**
+
+
+```
+jest --coverage | ./node_modules/.bin/codecov
+```
+
+
 ## Troubleshooting
 
 If you're seeing an **HTTP 400 error when uploading reports to S3**, make sure you've updated to at least version 3.7.0.
